@@ -1,0 +1,21 @@
+
+login/logout
+Alta usuario
+Listar salas y seleccionar
+
+G.Oponente
+Inicio partida
+Marcar
+
+Ganador
+Abandonar
+Acreditar fichas
+Fin turno
+1 reporte
+control de apuesta
+visualizar fichas
+control de abandono control de tiempo por turno
+visualizar puntos
+crear pozo
+
+Jugar con la maquina
