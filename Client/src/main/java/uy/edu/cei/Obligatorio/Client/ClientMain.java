@@ -18,11 +18,21 @@ public class ClientMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					/*
 					ChatWindow window = new ChatWindow(serverApp);
 					System.out.println("Ventana");
 					((Observable) serverApp).subscribe(window);
 					System.out.println("suscribir");
-					serverApp.sayHello("me quiero matar");
+					serverApp.sayHello("me quiero matar");*/
+					
+					IntroWindow probando = new IntroWindow();
+					MenuWindow menu = new MenuWindow();
+					AltaUsuarioWindow altaUsuario = new AltaUsuarioWindow();
+					//((Observable) serverApp).subscribe(probando);
+					//((Observable) serverApp).subscribe(menu);
+					
+					Windows ventanas = new Windows(probando,menu,altaUsuario);
+					((Observable) serverApp).subscribe(ventanas);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

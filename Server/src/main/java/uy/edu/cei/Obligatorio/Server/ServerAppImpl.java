@@ -31,4 +31,12 @@ public class ServerAppImpl implements ServerApp, Observable {
 			o.update(String.format("Hola %s", name));
 		}
 	}
+
+	@Override
+	public void IrMenuRegistrar() throws RemoteException {
+		for(Observer o : this.observers) {
+			o.CambiarMenuRegistro();
+		}
+	}
+	
 }
