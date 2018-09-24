@@ -7,10 +7,12 @@ import java.util.List;
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.ServerApp;
+import uy.edu.cei.Obligatorio.Common.Usuario;
 
 public class ServerAppImpl implements ServerApp, Observable {
 	
 	private List<Observer> observers;
+	private List<Usuario> usuarios;
 	
 	public ServerAppImpl() {
 		this.observers = new LinkedList<Observer>();
@@ -37,6 +39,12 @@ public class ServerAppImpl implements ServerApp, Observable {
 		for(Observer o : this.observers) {
 			o.CambiarMenuRegistro();
 		}
+	}
+
+	@Override
+	public boolean RegistrarUsuario() throws RemoteException {
+		return true;
+		
 	}
 	
 }

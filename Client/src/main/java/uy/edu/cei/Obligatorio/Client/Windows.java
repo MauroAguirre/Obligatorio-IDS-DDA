@@ -40,4 +40,7 @@ public class Windows extends UnicastRemoteObject implements Observer {
 		intro.Visibilidad(false);
 		altaUsuario.Visibilidad(true);
 	}
+	public boolean RegistrarUsuario() {
+		return true;
+	}
 }
