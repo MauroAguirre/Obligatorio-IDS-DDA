@@ -7,13 +7,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import uy.edu.cei.Obligatorio.Common.Observable;
-import uy.edu.cei.Obligatorio.Common.ServerApp;
+import uy.edu.cei.Obligatorio.Common.Server.Server;
 
 public class ClientMain {
 
 	public static void main(String[] args) throws RemoteException, NotBoundException {
 		Registry registry = LocateRegistry.getRegistry(1099);
-		ServerApp serverApp = (ServerApp) registry.lookup("server");
+		Server serverApp = (Server) registry.lookup("server");
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

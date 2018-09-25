@@ -4,11 +4,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import uy.edu.cei.Obligatorio.Common.Observer;
-import uy.edu.cei.Obligatorio.Common.ServerApp;
+import uy.edu.cei.Obligatorio.Common.Server.Server;
 
 public class Windows extends UnicastRemoteObject implements Observer {
 	
-	private ServerApp server;
+	private Server server;
 	private IntroWindow intro;
 	private MenuWindow menu;
 	private AltaUsuarioWindow altaUsuario;

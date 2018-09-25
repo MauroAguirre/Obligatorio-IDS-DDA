@@ -14,9 +14,6 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
-import uy.edu.cei.Obligatorio.Common.Observer;
-import uy.edu.cei.Obligatorio.Common.ServerApp;
-
 import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;

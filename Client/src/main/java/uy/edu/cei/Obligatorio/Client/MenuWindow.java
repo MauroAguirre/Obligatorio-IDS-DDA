@@ -6,9 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 import javax.swing.JFrame;
 
-import uy.edu.cei.Obligatorio.Common.Observer;
-import uy.edu.cei.Obligatorio.Common.ServerApp;
-
 public class MenuWindow {
 
 	private Windows master;

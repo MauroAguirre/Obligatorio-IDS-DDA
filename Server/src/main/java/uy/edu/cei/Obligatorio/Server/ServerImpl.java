@@ -6,15 +6,15 @@ import java.util.List;
 
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
-import uy.edu.cei.Obligatorio.Common.ServerApp;
-import uy.edu.cei.Obligatorio.Common.Usuario;
+import uy.edu.cei.Obligatorio.Common.Server.Server;
+import uy.edu.cei.Obligatorio.Domain.Usuario;
 
-public class ServerAppImpl implements ServerApp, Observable {
+public class ServerImpl implements Server, Observable {
 	
 	private List<Observer> observers;
 	private List<Usuario> usuarios;
 	
-	public ServerAppImpl() {
+	public ServerImpl() {
 		this.observers = new LinkedList<Observer>();
 	}
 	
