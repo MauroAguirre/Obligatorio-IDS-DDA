@@ -27,6 +27,7 @@ public class IntroWindow {
 	private JFrame Ventana;
 	private JTextField txtUsuario;
 	private JTextField txtContra;
+	private JTextField txtRespuesta;
 	private JButton btnLogear;
 	private JButton btnRegistro;
 	private JLabel lblLogin;
@@ -48,6 +49,10 @@ public class IntroWindow {
 			Ventana.setVisible(false);
 	}
 	
+	public void MensajeError(String respuesta) {
+		txtRespuesta.setText(respuesta);
+	}
+	
 	public void update(String message)  {
 		Ventana.setVisible(false);
 		Ventana.setVisible(true);
@@ -63,12 +68,12 @@ public class IntroWindow {
 		Ventana.getContentPane().setLayout(springLayout);
 		
 		btnLogear = new JButton("Logear");
+		springLayout.putConstraint(SpringLayout.EAST, btnLogear, -112, SpringLayout.EAST, Ventana.getContentPane());
 		Ventana.getContentPane().add(btnLogear);
 		btnLogear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtContra.setText(txtUsuario.getText());
 				try {
-					master.CambiarMenuRegistro();
+					master.Logear(txtUsuario.getText(),txtContra.getText());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -77,9 +82,18 @@ public class IntroWindow {
 			}
 		});
 		btnRegistro = new JButton("Registro");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistro, -48, SpringLayout.SOUTH, Ventana.getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, btnLogear, 0, SpringLayout.NORTH, btnRegistro);
 		Ventana.getContentPane().add(btnRegistro);
+		btnRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					master.CambiarMenuRegistro();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		lblLogin = new JLabel("Login");
 		springLayout.putConstraint(SpringLayout.NORTH, lblLogin, 10, SpringLayout.NORTH, Ventana.getContentPane());
@@ -87,16 +101,16 @@ public class IntroWindow {
 		Ventana.getContentPane().add(lblLogin);
 		
 		lblUsuario = new JLabel("Usuario");
+		springLayout.putConstraint(SpringLayout.WEST, btnRegistro, 0, SpringLayout.WEST, lblUsuario);
 		springLayout.putConstraint(SpringLayout.WEST, lblUsuario, 97, SpringLayout.WEST, Ventana.getContentPane());
 		Ventana.getContentPane().add(lblUsuario);
 		
 		lblContrasea = new JLabel("Contraseña");
-		springLayout.putConstraint(SpringLayout.EAST, btnRegistro, 0, SpringLayout.EAST, lblContrasea);
+		springLayout.putConstraint(SpringLayout.NORTH, btnRegistro, 34, SpringLayout.SOUTH, lblContrasea);
 		springLayout.putConstraint(SpringLayout.WEST, lblContrasea, 0, SpringLayout.WEST, lblUsuario);
 		Ventana.getContentPane().add(lblContrasea);
 		
 		txtUsuario = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, btnLogear, 0, SpringLayout.WEST, txtUsuario);
 		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 3, SpringLayout.NORTH, txtUsuario);
 		springLayout.putConstraint(SpringLayout.EAST, lblUsuario, -64, SpringLayout.WEST, txtUsuario);
 		springLayout.putConstraint(SpringLayout.NORTH, txtUsuario, 43, SpringLayout.NORTH, Ventana.getContentPane());
@@ -112,6 +126,14 @@ public class IntroWindow {
 		springLayout.putConstraint(SpringLayout.EAST, txtContra, -66, SpringLayout.EAST, Ventana.getContentPane());
 		Ventana.getContentPane().add(txtContra);
 		txtContra.setColumns(10);
+		
+		txtRespuesta = new JTextField();
+		txtRespuesta.setEditable(false);
+		springLayout.putConstraint(SpringLayout.NORTH, txtRespuesta, 22, SpringLayout.SOUTH, btnLogear);
+		springLayout.putConstraint(SpringLayout.WEST, txtRespuesta, 0, SpringLayout.WEST, btnRegistro);
+		springLayout.putConstraint(SpringLayout.EAST, txtRespuesta, -112, SpringLayout.EAST, Ventana.getContentPane());
+		Ventana.getContentPane().add(txtRespuesta);
+		txtRespuesta.setColumns(10);
 		
 		Ventana.setVisible(true);
 	}

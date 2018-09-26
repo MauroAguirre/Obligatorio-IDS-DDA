@@ -13,8 +13,9 @@ public class ClientMain {
 
 	public static void main(String[] args) throws RemoteException, NotBoundException {
 		Registry registry = LocateRegistry.getRegistry(1099);
-		Server serverApp = (Server) registry.lookup("server");
-		
+		Server server= (Server) registry.lookup("server");
+		CommunicationImpl communicationImpl = new CommunicationImpl(server);
+		LoginController loginController = new LoginController(communicationImpl);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -31,8 +32,8 @@ public class ClientMain {
 					//((Observable) serverApp).subscribe(probando);
 					//((Observable) serverApp).subscribe(menu);
 					
-					Windows ventanas = new Windows(probando,menu,altaUsuario);
-					((Observable) serverApp).subscribe(ventanas);
+					Windows ventanas = new Windows(probando,menu,altaUsuario,loginController);
+					((Observable) server).subscribe(ventanas);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

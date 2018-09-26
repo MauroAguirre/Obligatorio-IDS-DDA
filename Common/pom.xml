@@ -7,4 +7,11 @@
   </parent>
   <packaging>jar</packaging>
   <artifactId>Common</artifactId>
+  <dependencies>
+    <dependency>
+    	<groupId>uy.edu.cei</groupId>
+    	<artifactId>Domain</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>
