@@ -1,9 +1,9 @@
 package uy.edu.cei.Obligatorio.Server;
 import java.util.List;
 
-import uy.edu.cei.Obligatorio.Domain.Usuario;
+import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 public interface UsuarioService {
-	public List<Usuario> ListaUsuarios();
+	public List<UsuarioModel> ListaUsuarios();
 	public String Hola();
 }

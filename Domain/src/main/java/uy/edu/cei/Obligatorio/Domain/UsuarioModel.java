@@ -1,10 +1,10 @@
 package uy.edu.cei.Obligatorio.Domain;
 
-public class Usuario {
+public class UsuarioModel {
 	private String usuario;
 	private String contra;
 	
-	public Usuario(String usuario,String contra) {
+	public UsuarioModel(String usuario,String contra) {
 		this.usuario = usuario;
 		this.contra = contra;
 	}
