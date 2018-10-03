@@ -11,8 +11,6 @@ import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 public interface Server extends Remote {
 	public void sayHello(String name) throws RemoteException;
 	public void IrMenuRegistrar() throws RemoteException;
-	public boolean RegistrarUsuario() throws RemoteException;
-	public List<UsuarioModel> ListaUsuarios() throws RemoteException;
 	public void TestConnection() throws RemoteException;
 	public UsuarioController getUsuarioControllerImpl() throws RemoteException;
 }

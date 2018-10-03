@@ -28,8 +28,6 @@ public class ClientMain {
 					
 					CommClientServer css = CommClientServer.Instancia();
 					MainWindow main = new MainWindow();
-					main.GetFrame().add(new LoginPanel());
-					main.GetFrame().setVisible(true);
 					//
 					/*
 					IntroWindow probando = new IntroWindow();

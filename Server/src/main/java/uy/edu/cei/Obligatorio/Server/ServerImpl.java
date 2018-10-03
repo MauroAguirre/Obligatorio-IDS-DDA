@@ -46,20 +46,6 @@ public class ServerImpl implements Server, Observable {
 		}
 	}
 
-	@Override
-	public boolean RegistrarUsuario() throws RemoteException {
-		return true;
-		
-	}
-
-	@Override
-	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
-		List<UsuarioModel> a = new ArrayList<UsuarioModel>();
-		UsuarioModel usu = new UsuarioModel("123","123");
-		a.add(usu);
-		return a;
-		//return this.usuarioControllerImpl.ListaUsuarios();
-	}
 
 	@Override
 	public void TestConnection() throws RemoteException {

@@ -3,6 +3,9 @@ package uy.edu.cei.Obligatorio.Client.ui.Panel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.SpringLayout;
+
+import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -10,11 +13,12 @@ import javax.swing.JButton;
 public class RegistryPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JTextField txtContra;
-
+	private MainWindow master;
 	/**
 	 * Create the panel.
 	 */
-	public RegistryPanel() {
+	public RegistryPanel(MainWindow master) {
+		this.master = master;
 		setBackground(Color.GREEN);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);

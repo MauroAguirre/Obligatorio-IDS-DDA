@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import uy.edu.cei.Obligatorio.Client.CommClientServer;
+import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
+import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,10 +20,13 @@ import java.awt.Font;
 public class LoginPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JPasswordField pwdContra;
+	private MainWindow master;
+	private JTextField txtRespuesta;
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public LoginPanel(MainWindow master) {
+		this.master = master;
 		setBackground(Color.GRAY);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -76,7 +81,16 @@ public class LoginPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					CommClientServer css = CommClientServer.Instancia();
-					css.GetServer().getUsuarioControllerImpl().VerificarUsuario(txtUsuario.getText(),new String(pwdContra.getPassword()));
+					UsuarioModel usuario = css.GetServer().getUsuarioControllerImpl().VerificarUsuario(txtUsuario.getText(),new String(pwdContra.getPassword()));
+					if(usuario==null) {
+						txtRespuesta.setText("Error en los datos del usuario");
+					}
+					else {
+						master.GetFrame().removeAll();
+						master.GetFrame().add(new MainPanel(master));
+						master.GetFrame().setVisible(true);
+					}
+						
 				} catch (Throwable e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -105,6 +119,15 @@ public class LoginPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnRegistrar, 264, SpringLayout.WEST, this);
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		add(btnRegistrar);
+		
+		txtRespuesta = new JTextField();
+		txtRespuesta.setEditable(false);
+		springLayout.putConstraint(SpringLayout.NORTH, txtRespuesta, 6, SpringLayout.SOUTH, pwdContra);
+		springLayout.putConstraint(SpringLayout.WEST, txtRespuesta, 0, SpringLayout.WEST, txtUsuario);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtRespuesta, 37, SpringLayout.SOUTH, pwdContra);
+		springLayout.putConstraint(SpringLayout.EAST, txtRespuesta, 0, SpringLayout.EAST, txtUsuario);
+		txtRespuesta.setColumns(10);
+		add(txtRespuesta);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
