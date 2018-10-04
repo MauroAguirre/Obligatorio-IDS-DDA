@@ -13,12 +13,10 @@ import javax.swing.JButton;
 public class RegistryPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JTextField txtContra;
-	private MainWindow master;
 	/**
 	 * Create the panel.
 	 */
-	public RegistryPanel(MainWindow master) {
-		this.master = master;
+	public RegistryPanel() {
 		setBackground(Color.GREEN);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);

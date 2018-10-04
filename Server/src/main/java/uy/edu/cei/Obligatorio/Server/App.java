@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import uy.edu.cei.Obligatorio.Common.Server.Server;
+import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
 
 /**
  * Hello world!

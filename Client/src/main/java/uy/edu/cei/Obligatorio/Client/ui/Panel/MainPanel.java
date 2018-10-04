@@ -9,11 +9,8 @@ import javax.swing.SpringLayout;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 
 public class MainPanel extends JPanel {
-
-	private MainWindow master;
 	
-	public MainPanel(MainWindow master) {
-		this.master = master;
+	public MainPanel() {
 		setBackground(Color.RED);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
