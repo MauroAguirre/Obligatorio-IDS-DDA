@@ -18,6 +18,8 @@ public class ServerImpl implements Server, Observable {
 	
 	public ServerImpl() throws RemoteException {
 		usuarioControllerImpl = UsuarioControllerImpl.Instancia();
+		observers = new LinkedList<>();
+		usuarios = new LinkedList<>();
 	}
 	
 	public UsuarioControllerImpl getUsuarioControllerImpl() throws RemoteException {
@@ -33,7 +35,6 @@ public class ServerImpl implements Server, Observable {
 	@Override
 	public void sayHello(String name) throws RemoteException {
 		System.out.println(String.format("Hola %s", name));
-		// this.observers.forEach((o) -> o.update(String.format("Hola %s", name)));
 		for(Observer o : this.observers) {
 			o.update(String.format("Hola %s", name));
 		}

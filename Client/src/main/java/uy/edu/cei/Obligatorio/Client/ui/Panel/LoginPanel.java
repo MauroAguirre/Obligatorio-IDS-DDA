@@ -20,6 +20,10 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 
 public class LoginPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtUsuario;
 	private JPasswordField pwdContra;
 	private JTextField txtRespuesta;
@@ -95,6 +99,7 @@ public class LoginPanel extends JPanel {
 					else {
 						txtRespuesta.setText("Encontrado");
 						JOptionPane.showMessageDialog(p, "Encontrado", "Bien", 1);
+						css.GetServer().sayHello(usuario.GetUsuario());
 					}
 						
 				} catch (Throwable e1) {

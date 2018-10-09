@@ -15,7 +15,7 @@ public class UsuarioServiceMemoryImpl extends UnicastRemoteObject implements Usu
 	 */
 	private static final long serialVersionUID = 1L;
 	private static UsuarioServiceMemoryImpl instancia;
-	private static Map<String,UsuarioModel> mapUsuarios;
+	private Map<String,UsuarioModel> mapUsuarios;
 	
 	protected UsuarioServiceMemoryImpl() throws RemoteException {
 		super();
@@ -25,9 +25,6 @@ public class UsuarioServiceMemoryImpl extends UnicastRemoteObject implements Usu
 	public static UsuarioServiceMemoryImpl Instancia() throws RemoteException {
 		if(instancia == null) {
 			instancia = new UsuarioServiceMemoryImpl();
-			mapUsuarios = new HashMap<String,UsuarioModel>();
-			mapUsuarios.put("mauro", new UsuarioModel("mauro","123"));
-			mapUsuarios.put("matias", new UsuarioModel("matias","123"));
 		}		
 		return instancia;
 	}
@@ -40,6 +37,9 @@ public class UsuarioServiceMemoryImpl extends UnicastRemoteObject implements Usu
 
 	@Override
 	public UsuarioModel buscarUsuarioPorNombre(String nombre) {
+		this.mapUsuarios = new HashMap<String,UsuarioModel>();
+		this.mapUsuarios.put("mauro", new UsuarioModel("mauro","123"));
+		this.mapUsuarios.put("matias", new UsuarioModel("matias","123"));
 		return mapUsuarios.get(nombre);
 	}
 
