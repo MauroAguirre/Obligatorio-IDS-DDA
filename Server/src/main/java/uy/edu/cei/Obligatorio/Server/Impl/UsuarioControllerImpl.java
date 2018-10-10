@@ -24,16 +24,5 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 
 	public UsuarioModel VerificarUsuario(String usuario, String contra) throws RemoteException {
 		return usuarioServiceMemoryImpl.buscarUsuarioPorNombre(usuario);
-		/*
-		Map<String,UsuarioModel> usuarios = usuarioServiceImpl.ListaUsuarios();
-		UsuarioModel user = new UsuarioModel(usuario,contra);
-
-		for(UsuarioModel us : usuarios.values()){
-			if(us.GetContra().equals(contra) && us.GetUsuario().equals(usuario))
-				return us;
-		}
-		System.out.println("No se encontro el usuario");
-		return null;
-		*/
 	}
 }

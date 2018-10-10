@@ -2,21 +2,30 @@ package uy.edu.cei.Obligatorio.Client.ui.Panel;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SpringLayout;
 
+import uy.edu.cei.Obligatorio.Client.CommClientServer;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
+import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
+import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class RegistryPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JTextField txtContra;
+	private MainWindow master;
 	/**
 	 * Create the panel.
 	 */
-	public RegistryPanel() {
+	public RegistryPanel(MainWindow master) {
+		this.master = master;
 		setBackground(Color.GREEN);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -52,11 +61,21 @@ public class RegistryPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnSalir, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, this);
 		add(btnSalir);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					master.GetFrame().setVisible(false);
+					master.GetFrame().dispose();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}			
+			}
+		});
 		
 		JButton btnAgregar = new JButton("Agregar");
 		springLayout.putConstraint(SpringLayout.NORTH, btnAgregar, 0, SpringLayout.NORTH, btnSalir);
 		springLayout.putConstraint(SpringLayout.EAST, btnAgregar, -10, SpringLayout.EAST, this);
 		add(btnAgregar);
-
 	}
 }

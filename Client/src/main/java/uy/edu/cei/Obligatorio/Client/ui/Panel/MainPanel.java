@@ -26,6 +26,5 @@ public class MainPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, respuesta, 131, SpringLayout.SOUTH, lblMenuPrincipal);
 		springLayout.putConstraint(SpringLayout.EAST, respuesta, 290, SpringLayout.WEST, this);
 		add(respuesta);
-
 	}
 }

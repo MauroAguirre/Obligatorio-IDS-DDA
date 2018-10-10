@@ -27,10 +27,12 @@ public class LoginPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JPasswordField pwdContra;
 	private JTextField txtRespuesta;
+	private MainWindow master;
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public LoginPanel(MainWindow master) {
+		this.master = master;
 		setBackground(Color.GRAY);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -100,6 +102,8 @@ public class LoginPanel extends JPanel {
 						txtRespuesta.setText("Encontrado");
 						JOptionPane.showMessageDialog(p, "Encontrado", "Bien", 1);
 						css.GetServer().sayHello(usuario.GetUsuario());
+						master.GetFrame().add(new MainPanel());
+						master.GetFrame().setVisible(true);
 					}
 						
 				} catch (Throwable e1) {
@@ -120,7 +124,9 @@ public class LoginPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnRegistrar, 264, SpringLayout.WEST, this);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				setVisible(false);
+				master.GetFrame().add(new RegistryPanel(master));
+				master.GetFrame().setVisible(true);
 			}
 		});
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));

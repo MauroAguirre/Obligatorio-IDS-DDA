@@ -5,6 +5,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.MainPanel;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.RegistryPanel;
 
 public class ClientMain {
 
@@ -17,7 +19,7 @@ public class ClientMain {
 					
 					CommClientServer css = CommClientServer.Instancia();
 					MainWindow main = new MainWindow();
-					main.GetFrame().add(new LoginPanel());
+					main.GetFrame().add(new LoginPanel(main));
 					main.GetFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
