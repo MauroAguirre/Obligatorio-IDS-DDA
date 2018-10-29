@@ -14,13 +14,13 @@ public class ClientMain {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					//profe tirando fruta
-					
+				try {	
 					EventQueueClient css = EventQueueClient.Instancia();
 					MainWindow main = new MainWindow();
 					main.GetFrame().add(new LoginPanel(main));
 					main.GetFrame().setVisible(true);
+					main.setId(css.registrar(main));
+					System.out.print(main.getId());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

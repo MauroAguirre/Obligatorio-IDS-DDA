@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
@@ -17,9 +19,11 @@ import uy.edu.cei.Obligatorio.Common.Server.Server;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 public class EventQueueClient extends UnicastRemoteObject implements Observer{
-	private List<Observer> observers;
+	
 	private static EventQueueClient instancia = null;
+	
 	private Server server;
+	private List<Observer> observers;
 	private Queue<GameNotification> queue;
 	
 	public static EventQueueClient Instancia() throws RemoteException {
@@ -47,8 +51,8 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	@Override
 	public void update(GameNotification notification) throws RemoteException {
-		System.out.println("Nuevo mensaje es del tipo "+ notification.getType());
-		queue.add(notification);
+		System.out.println("Nuevo mensaje es del tipo: "+notification.getType());
+		this.queue.add(notification);
 	}
 
 	public void initializeThread() {
@@ -72,6 +76,10 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 			}
 			
 		}).start(); 
+	}
+	public int registrar(Observer observer) throws RemoteException {
+		this.observers.add(observer);
+		return server.asignarIdACliente();
 	}
 	
 }

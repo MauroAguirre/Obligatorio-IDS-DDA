@@ -13,7 +13,7 @@ public interface UsuarioService extends Remote {
 	public static UsuarioService userServiceFactory() throws RemoteException {
 		UsuarioService usuarioService = null;
 		if("memory".equals(TYPE)) {
-			usuarioService = UsuarioServiceMemoryImpl.Instancia();
+			usuarioService = UsuarioServiceMemoryImpl.getInstance();
 		}
 		else {
 			if("database".equals(TYPE)) {

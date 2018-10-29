@@ -13,11 +13,16 @@ import uy.edu.cei.Obligatorio.Common.Server.Server;
 public class ServerImpl implements Server, Observable {
 	
 	private UsuarioControllerImpl usuarioControllerImpl;
+	private static int clientes;
 	private List<Observer> observers;
 	private List<UsuarioModel> usuarios;
 	
+	public int asignarIdACliente() throws RemoteException {
+		return ++clientes;
+	}
+	
 	public ServerImpl() throws RemoteException {
-		usuarioControllerImpl = UsuarioControllerImpl.Instancia();
+		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 		observers = new LinkedList<>();
 		usuarios = new LinkedList<>();
 	}
@@ -50,10 +55,5 @@ public class ServerImpl implements Server, Observable {
 		
 	}
 
-	@Override
-	public void IrMenuRegistrar() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
