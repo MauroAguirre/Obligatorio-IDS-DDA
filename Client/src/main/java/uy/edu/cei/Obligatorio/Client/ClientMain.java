@@ -17,7 +17,7 @@ public class ClientMain {
 				try {
 					//profe tirando fruta
 					
-					CommClientServer css = CommClientServer.Instancia();
+					EventQueueClient css = EventQueueClient.Instancia();
 					MainWindow main = new MainWindow();
 					main.GetFrame().add(new LoginPanel(main));
 					main.GetFrame().setVisible(true);

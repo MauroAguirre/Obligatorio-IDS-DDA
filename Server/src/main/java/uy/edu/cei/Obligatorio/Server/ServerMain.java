@@ -12,7 +12,7 @@ import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
  * Hello world!
  *
  */
-public class App {
+public class ServerMain {
 	public static void main(String[] args) throws RemoteException {
 		System.out.println("App server activated");
 		Server server = new ServerImpl();

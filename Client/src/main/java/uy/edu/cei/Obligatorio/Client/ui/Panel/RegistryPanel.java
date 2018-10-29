@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SpringLayout;
 
-import uy.edu.cei.Obligatorio.Client.CommClientServer;
+import uy.edu.cei.Obligatorio.Client.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;

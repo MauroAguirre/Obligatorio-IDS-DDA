@@ -35,22 +35,24 @@ public class ServerImpl implements Server, Observable {
 	@Override
 	public void sayHello(String name) throws RemoteException {
 		System.out.println(String.format("Hola %s", name));
+		
+		/*
 		for(Observer o : this.observers) {
 			o.update(String.format("Hola %s", name));
-		}
+		}*/
 	}
 
-	@Override
-	public void IrMenuRegistrar() throws RemoteException {
-		for(Observer o : this.observers) {
-			o.CambiarMenuRegistro();
-		}
-	}
 
 
 	@Override
 	public void TestConnection() throws RemoteException {
 		System.out.println("Hemos conectado con el server yeahh boooyyyyy");
+		
+	}
+
+	@Override
+	public void IrMenuRegistrar() throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 

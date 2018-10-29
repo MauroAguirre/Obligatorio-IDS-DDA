@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import uy.edu.cei.Obligatorio.Client.CommClientServer;
+import uy.edu.cei.Obligatorio.Client.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;

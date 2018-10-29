@@ -3,7 +3,7 @@ package uy.edu.cei.Obligatorio.Client.ui.Panel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-import uy.edu.cei.Obligatorio.Client.CommClientServer;
+import uy.edu.cei.Obligatorio.Client.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
@@ -91,7 +91,7 @@ public class LoginPanel extends JPanel {
 				try {
 					String nombre = txtUsuario.getText();
 					String contra= new String(pwdContra.getPassword());
-					CommClientServer css = CommClientServer.Instancia();
+					EventQueueClient css = EventQueueClient.Instancia();
 					UsuarioController uci = css.GetServer().getUsuarioControllerImpl();
 					UsuarioModel usuario = uci.VerificarUsuario(nombre,contra);
 					if(usuario==null) {
