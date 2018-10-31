@@ -17,15 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class RegistryPanel extends JPanel {
+public class RegistryPanel extends GeneralaPanel {
 	private JTextField txtUsuario;
 	private JTextField txtContra;
-	private MainWindow master;
+	private JTextField textRespuesta;
 	/**
 	 * Create the panel.
 	 */
-	public RegistryPanel(MainWindow master) {
-		this.master = master;
+	public RegistryPanel() {
 		setBackground(Color.GREEN);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -64,8 +63,10 @@ public class RegistryPanel extends JPanel {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					/*
 					master.GetFrame().setVisible(false);
 					master.GetFrame().dispose();
+					*/
 				} catch (Throwable e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -77,5 +78,18 @@ public class RegistryPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, btnAgregar, 0, SpringLayout.NORTH, btnSalir);
 		springLayout.putConstraint(SpringLayout.EAST, btnAgregar, -10, SpringLayout.EAST, this);
 		add(btnAgregar);
+		
+		JLabel lblRespuesta = new JLabel("Respuesta");
+		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 31, SpringLayout.SOUTH, lblContrasea);
+		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 0, SpringLayout.WEST, lblContrasea);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, 45, SpringLayout.SOUTH, lblContrasea);
+		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 104, SpringLayout.WEST, this);
+		add(lblRespuesta);
+		
+		textRespuesta = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textRespuesta, 0, SpringLayout.NORTH, lblRespuesta);
+		springLayout.putConstraint(SpringLayout.WEST, textRespuesta, 0, SpringLayout.WEST, txtUsuario);
+		add(textRespuesta);
+		textRespuesta.setColumns(10);
 	}
 }

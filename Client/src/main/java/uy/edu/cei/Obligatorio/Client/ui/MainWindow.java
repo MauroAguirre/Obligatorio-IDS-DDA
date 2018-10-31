@@ -1,25 +1,13 @@
 package uy.edu.cei.Obligatorio.Client.ui;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import uy.edu.cei.Obligatorio.Client.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
-import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
-import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
-public class MainWindow implements Observer{
+public class MainWindow{
 
 	private JFrame frame;
-	private int id;
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	public JFrame GetFrame() {
 		return frame;
@@ -37,15 +25,19 @@ public class MainWindow implements Observer{
 	
 	public void update(GameNotification notification) {
 		try {
+			LoginPanel loginPanel = (LoginPanel)frame.getComponent(0);
+			switch(notification.getType().toString()) {
+				case "LOGIN":
+					loginPanel.loginError();
+					break;
+				case "TROW_DICE":
+					break;
+			}
 			Thread.sleep(5000);
 			System.out.println("El cliente: "+notification.getCurrentUser()+" quiso: "+notification.getType());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public int getId() {
-		return id;
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.swing.SpringLayout;
 
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends GeneralaPanel {
 	
 	public MainPanel() {
 		setBackground(Color.RED);

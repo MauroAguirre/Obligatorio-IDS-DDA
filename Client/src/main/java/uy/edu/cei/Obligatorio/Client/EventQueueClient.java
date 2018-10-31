@@ -21,20 +21,19 @@ import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	
 	private static EventQueueClient instancia = null;
-	
+	private MainWindow mainWindow;
 	private Server server;
-	private List<Observer> observers;
 	private Queue<GameNotification> queue;
+	private int id;
 	
 	public static EventQueueClient Instancia() throws RemoteException {
-		if(instancia == null)
+		if(instancia == null) 
 			instancia = new EventQueueClient();
 		return instancia;
 	}
 	public EventQueueClient() throws RemoteException{
 		try {
 			this.queue = new LinkedList<>();
-			this.observers = new LinkedList<>();
 			Registry registry = LocateRegistry.getRegistry(1099);
 			server= (Server) registry.lookup("server");
 			server.TestConnection();
@@ -48,11 +47,6 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	public Server GetServer() {
 		return server;
-	}
-	@Override
-	public void update(GameNotification notification) throws RemoteException {
-		System.out.println("Nuevo mensaje es del tipo: "+notification.getType());
-		this.queue.add(notification);
 	}
 
 	public void initializeThread() {
@@ -77,9 +71,10 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 			
 		}).start(); 
 	}
-	public int registrar(Observer observer) throws RemoteException {
-		this.observers.add(observer);
-		return server.asignarIdACliente();
+	@Override
+	public void update(GameNotification notification) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

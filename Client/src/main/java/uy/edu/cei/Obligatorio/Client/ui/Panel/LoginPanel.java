@@ -19,7 +19,7 @@ import java.rmi.RemoteException;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 
-public class LoginPanel extends JPanel {
+public class LoginPanel extends GeneralaPanel{
 	/**
 	 * 
 	 */
@@ -27,12 +27,10 @@ public class LoginPanel extends JPanel {
 	private JTextField txtUsuario;
 	private JPasswordField pwdContra;
 	private JTextField txtRespuesta;
-	private MainWindow master;
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel(MainWindow master) {
-		this.master = master;
+	public LoginPanel() {
 		setBackground(Color.GRAY);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -74,10 +72,7 @@ public class LoginPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, pwdContra, 125, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.NORTH, pwdContra, 94, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, pwdContra, 152, SpringLayout.WEST, this);
-		add(pwdContra);
-		
-		LoginPanel p = this;
-		
+		add(pwdContra);	
 		
 		JButton btnLogear = new JButton("Logear");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLogear, 249, SpringLayout.NORTH, this);
@@ -93,19 +88,7 @@ public class LoginPanel extends JPanel {
 					String contra= new String(pwdContra.getPassword());
 					EventQueueClient css = EventQueueClient.Instancia();
 					UsuarioController uci = css.GetServer().getUsuarioControllerImpl();
-					UsuarioModel usuario = uci.VerificarUsuario(nombre,contra);
-					if(usuario==null) {
-						txtRespuesta.setText("Error en los datos del usuario");
-						JOptionPane.showMessageDialog(p, "Error en los datos del usuario", "Error", 1);
-					}
-					else {
-						txtRespuesta.setText("Encontrado");
-						JOptionPane.showMessageDialog(p, "Encontrado", "Bien", 1);
-						css.GetServer().sayHello(usuario.GetUsuario());
-						master.GetFrame().add(new MainPanel());
-						master.GetFrame().setVisible(true);
-					}
-						
+					uci.VerificarUsuario(nombre, contra);
 				} catch (Throwable e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -124,9 +107,11 @@ public class LoginPanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnRegistrar, 264, SpringLayout.WEST, this);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*
 				setVisible(false);
 				master.GetFrame().add(new RegistryPanel(master));
 				master.GetFrame().setVisible(true);
+				*/
 			}
 		});
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -154,5 +139,10 @@ public class LoginPanel extends JPanel {
 				}	
 			}
 		});
+		
+	}
+	public void loginError() {
+		txtRespuesta.setText("Error en los datos del usuario");
+		JOptionPane.showMessageDialog(this, "Error en los datos del usuario", "Error", 1);
 	}
 }
