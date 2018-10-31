@@ -9,7 +9,12 @@ public class GameNotification implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private GameNotificationType type;
-	private String currentUser;
+	private int id;
+	
+	public GameNotification(GameNotificationType gnt,int id) {
+		this.type = gnt;
+		this.id = id;
+	}
 	
 	public GameNotificationType getType() {
 		return type;
@@ -19,11 +24,11 @@ public class GameNotification implements Serializable{
 		this.type = type;
 	}
 	
-	public String getCurrentUser() {
-		return currentUser;
+	public int getId() {
+		return id;
 	}
 	
-	public void setCurrentUser(String currentUser) {
-		this.currentUser = currentUser;
+	public void setId(int id) {
+		this.id = id;
 	}
 }

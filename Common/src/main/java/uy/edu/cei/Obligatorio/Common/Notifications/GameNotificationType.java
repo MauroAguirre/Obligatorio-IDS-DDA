@@ -2,6 +2,7 @@ package uy.edu.cei.Obligatorio.Common.Notifications;
 
 public enum GameNotificationType {
 	LOGIN("login"),
+	LOGIN_ERROR("login_error"),
 	LOGOUT("logout"),
 	THROW_DICE("throw_dice");
 	

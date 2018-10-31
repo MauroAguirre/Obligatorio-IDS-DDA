@@ -22,9 +22,9 @@ public class ServerImpl implements Server, Observable {
 	}
 	
 	public ServerImpl() throws RemoteException {
-		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 		observers = new LinkedList<>();
 		usuarios = new LinkedList<>();
+		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 	}
 	
 	public UsuarioControllerImpl getUsuarioControllerImpl() throws RemoteException {

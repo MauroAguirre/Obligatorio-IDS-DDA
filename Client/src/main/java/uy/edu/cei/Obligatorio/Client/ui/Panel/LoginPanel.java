@@ -88,9 +88,8 @@ public class LoginPanel extends GeneralaPanel{
 					String contra= new String(pwdContra.getPassword());
 					EventQueueClient css = EventQueueClient.Instancia();
 					UsuarioController uci = css.GetServer().getUsuarioControllerImpl();
-					uci.VerificarUsuario(nombre, contra);
+					uci.VerificarUsuario(nombre, contra,css.getId());
 				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}			
 			}

@@ -4,5 +4,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface UsuarioController extends Remote {
-	public void VerificarUsuario(String usuario, String contra) throws RemoteException;
+	public void VerificarUsuario(String usuario, String contra,int id) throws RemoteException;
 }

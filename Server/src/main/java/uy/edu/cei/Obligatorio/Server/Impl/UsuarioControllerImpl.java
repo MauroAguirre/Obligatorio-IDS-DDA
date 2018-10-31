@@ -21,28 +21,22 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 		this.observers = observers;
 	}
 	
-	public void VerificarUsuario(String username, String password) throws RemoteException {
-		System.out.println(String.format("username: %s, password: %s", username, password));
+	public void VerificarUsuario(String usuario, String contra, int id) throws RemoteException {
+		System.out.println("Usuario: "+usuario+" Contraseña: "+contra+" Id: "+id);
 		
 		UsuarioService us = UsuarioService.userServiceFactory();
-		UsuarioModel userModel = us.buscarUsuarioPorNombre(username);
-		if(userModel != null && 
-				userModel.GetContra().equals(password)) {
-			this.observers.forEach(o -> {
-				GameNotification gameNotification = 
-						new GameNotification();
-				
-				gameNotification.setCurrentUser("pedro");
-				gameNotification.setType(
-						GameNotificationType.LOGIN);
-				
-				try {
-					o.update(gameNotification);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
+		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
+		GameNotification gameNotification;
+		if(usuarioModel != null && usuarioModel.GetContra().equals(contra)) {
+			gameNotification = new GameNotification(GameNotificationType.LOGIN,id);
+		}
+		else
+			gameNotification = new GameNotification(GameNotificationType.LOGIN_ERROR,id);
+		for(int i=0;i<observers.size();i++) {
+			if(observers.get(i).getId()==id) {
+				observers.get(i).update(gameNotification);
+				break;
+			}
 		}
 	}
 }

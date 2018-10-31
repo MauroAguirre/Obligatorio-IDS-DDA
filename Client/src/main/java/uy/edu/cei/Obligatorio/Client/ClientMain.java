@@ -14,11 +14,9 @@ public class ClientMain {
 				try {	
 					EventQueueClient css = EventQueueClient.Instancia();
 					MainWindow main = new MainWindow();
+					css.setMainWindow(main);
 					main.GetFrame().add(new LoginPanel());
 					main.GetFrame().setVisible(true);
-					
-					main.setId(css.registrar(main));
-					System.out.print(main.getId());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
