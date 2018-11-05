@@ -142,6 +142,6 @@ public class LoginPanel extends GeneralaPanel{
 	}
 	public void loginError() {
 		txtRespuesta.setText("Error en los datos del usuario");
-		JOptionPane.showMessageDialog(this, "Error en los datos del usuario", "Error", 1);
+		//JOptionPane.showMessageDialog(this, "Error en los datos del usuario", "Error", 1);
 	}
 }

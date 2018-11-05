@@ -9,10 +9,12 @@ public class GameNotification implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private GameNotificationType type;
+	private GameNotificationAction action;
 	private int id;
 	
-	public GameNotification(GameNotificationType gnt,int id) {
-		this.type = gnt;
+	public GameNotification(GameNotificationType type,GameNotificationAction action,int id) {
+		this.type = type;
+		this.action = action;
 		this.id = id;
 	}
 	
@@ -22,6 +24,14 @@ public class GameNotification implements Serializable{
 	
 	public void setType(GameNotificationType type) {
 		this.type = type;
+	}
+	
+	public GameNotificationAction getAction() {
+		return action;
+	}
+	
+	public void setAction(GameNotificationAction action) {
+		this.action = action;
 	}
 	
 	public int getId() {

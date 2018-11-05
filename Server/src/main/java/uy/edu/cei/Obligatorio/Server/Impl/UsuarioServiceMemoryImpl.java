@@ -29,9 +29,9 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 	private UsuarioServiceMemoryImpl(){
 		this.users = new TreeMap<>();
 
-		users.put("pepe", new UsuarioModel("pepe", "password"));
-		users.put("juan", new UsuarioModel("juan", "password"));
-		users.put("jose", new UsuarioModel("jose", "password"));
+		users.put("mauro", new UsuarioModel("mauro", "123"));
+		users.put("matias", new UsuarioModel("matias", "123"));
+		users.put("kakaroto", new UsuarioModel("kakaroto", "123"));
 	}
 
 	@Override

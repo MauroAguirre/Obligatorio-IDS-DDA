@@ -10,7 +10,7 @@ public class MainWindow{
 
 	private JFrame frame;
 	
-	public JFrame GetFrame() {
+	public JFrame getFrame() {
 		return frame;
 	}
 

@@ -10,8 +10,8 @@ import java.util.Queue;
 
 import javax.swing.JFrame;
 
+import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
-import uy.edu.cei.Obligatorio.Client.ui.Panel.GeneralaPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.RegistryPanel;
 import uy.edu.cei.Obligatorio.Common.Observer;
@@ -29,6 +29,7 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	private Server server;
 	private Queue<GameNotification> queue;
 	private int id;
+	private LoginController loginController;
 	
 	public void setMainWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
@@ -45,6 +46,7 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	public EventQueueClient() throws RemoteException{
 		try {
+			loginController = new LoginController();
 			this.queue = new LinkedList<>();
 			Registry registry = LocateRegistry.getRegistry(1099);
 			server= (Server) registry.lookup("server");
@@ -87,24 +89,32 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	@Override
 	public void update(GameNotification notification) {
-		JFrame frame = mainWindow.GetFrame();
-		String dsadas = frame.getContentPane().getClass().getName();
-		String dasd = frame.getComponent(0).getClass().getName();
 		try {
-			GameNotification sdad = notification;
-			switch(notification.getType().toString()) {
-				case "LOGIN":
-					frame.add(new RegistryPanel());
-					frame.setVisible(true);
+			switch(notification.getType()) {
+				case LOGIN:
+					loginController.Verificar(mainWindow.getFrame(),notification);
 					break;
-				case "LOGIN_ERROR":
-					GeneralaPanel d = (GeneralaPanel)frame.getContentPane();
-					LoginPanel www = (LoginPanel) d;
-					www.loginError();
+				case REGISTRY:
 					break;
-				case "TROW_DICE":
+				default:
 					break;
 			}
+		/*
+		JFrame frame = mainWindow.getFrame();
+		try {
+			switch(notification.getType()) {
+				case LOGIN:
+					frame.setContentPane(new RegistryPanel());
+					frame.setVisible(true);
+					break;
+				case LOGIN_ERROR:
+					LoginPanel d = (LoginPanel)frame.getContentPane();
+					d.loginError();
+					break;
+				default:
+					break;
+			}
+		*/
 			Thread.sleep(5000);
 			System.out.println("El cliente: "+notification.getId()+" quiso: "+notification.getType());
 		} catch (InterruptedException e) {
