@@ -2,8 +2,14 @@ package uy.edu.cei.Obligatorio.Domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UsuarioModel implements Serializable {
 	
+	@Id
+	private Long id;
 	private String usuario;
 	private String contra;
 

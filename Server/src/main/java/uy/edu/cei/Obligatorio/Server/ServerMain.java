@@ -5,6 +5,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import uy.edu.cei.Obligatorio.Common.Server.Server;
 import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
 
@@ -14,6 +18,9 @@ import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
  */
 public class ServerMain {
 	public static void main(String[] args) throws RemoteException {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaDS");
+		EntityManager em = emf.createEntityManager(); 
 		System.out.println("App server activated");
 		Server server = new ServerImpl();
 		LocateRegistry.createRegistry(1099);
