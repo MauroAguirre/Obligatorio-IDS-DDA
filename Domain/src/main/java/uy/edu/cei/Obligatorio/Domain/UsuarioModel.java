@@ -2,14 +2,27 @@ package uy.edu.cei.Obligatorio.Domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "usuarios")
+@NamedQuery(name = "UsuarioModel.UserFindByUserName", query = "SELECT u FROM UsuarioModel u WHERE u.usuario = :usuario")
 public class UsuarioModel implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique = true)
 	private String usuario;
 	private String contra;
 
