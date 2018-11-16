@@ -5,14 +5,15 @@
 	version="1.0">
 	<persistence-unit name="jpaDS">
 		<class>uy.edu.cei.Obligatorio.Domain.UsuarioModel</class>
+		<class>uy.edu.cei.Obligatorio.Domain.RegistroModel</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3305/Generala" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3305/generala?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="mauro" />
 			<property name="javax.persistence.jdbc.password" value="1234" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLLInnoDBDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<!--  <property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
 		</properties>
 	</persistence-unit>
 </persistence>

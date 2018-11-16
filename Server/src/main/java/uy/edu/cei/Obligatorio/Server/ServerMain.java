@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import uy.edu.cei.Obligatorio.Common.Server.Server;
+import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
 
@@ -27,22 +28,30 @@ public class ServerMain {
 		
 		//ingresar
 		em.getTransaction().begin();
-		UsuarioModel u = new UsuarioModel("pepe","1234");
+		UsuarioModel u = new UsuarioModel("pedro","2323");
+		RegistroModel r1 = new RegistroModel("kakaroto");
+		RegistroModel r2 = new RegistroModel("ponele sabor");
 		em.persist(u);
+		u.getRegistros().add(r1);
+		u.getRegistros().add(r2);
 		em.getTransaction().commit();
-		//modificar
+		//modificar 
+		/*
 		em.getTransaction().begin();
 		UsuarioModel modificado = em.merge(u);
 		modificado.SetUsuario("laura");
 		em.persist(modificado);
 		em.getTransaction().commit();
+		*/
 		//consulta
+		/*
 		UsuarioModel traido = em.find(UsuarioModel.class, 1L);
 		System.out.println(traido.GetUsuario()+" - "+traido.GetContra());
 		//consulta personalizada
 		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.UserFindByUserName",UsuarioModel.class);
 		query.setParameter("usuario","pepe");
 		UsuarioModel usuQuery = query.getSingleResult();
+		*/
 		
 
 		
