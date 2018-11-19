@@ -20,16 +20,12 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 
 public class LoginPanel extends GeneralaPanel{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JTextField txtUsuario;
 	private JPasswordField pwdContra;
 	private JTextField txtRespuesta;
-	/**
-	 * Create the panel.
-	 */
+
 	public LoginPanel() {
 		setBackground(Color.GRAY);
 		SpringLayout springLayout = new SpringLayout();
@@ -101,25 +97,8 @@ public class LoginPanel extends GeneralaPanel{
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		add(btnSalir);
 		
-		JButton btnRegistrar = new JButton("Registrar");
-		springLayout.putConstraint(SpringLayout.WEST, btnRegistrar, 173, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnRegistrar, 264, SpringLayout.WEST, this);
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*
-				setVisible(false);
-				master.GetFrame().add(new RegistryPanel(master));
-				master.GetFrame().setVisible(true);
-				*/
-			}
-		});
-		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		add(btnRegistrar);
-		
 		txtRespuesta = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistrar, 128, SpringLayout.SOUTH, txtRespuesta);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, 128, SpringLayout.SOUTH, txtRespuesta);
-		springLayout.putConstraint(SpringLayout.NORTH, btnRegistrar, 87, SpringLayout.SOUTH, txtRespuesta);
 		springLayout.putConstraint(SpringLayout.NORTH, btnSalir, 87, SpringLayout.SOUTH, txtRespuesta);
 		txtRespuesta.setEditable(false);
 		springLayout.putConstraint(SpringLayout.NORTH, txtRespuesta, 6, SpringLayout.SOUTH, pwdContra);
@@ -131,7 +110,8 @@ public class LoginPanel extends GeneralaPanel{
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
+					EventQueueClient css = EventQueueClient.Instancia();
+					css.getMainWindow().getFrame().dispose();
 				} catch (Throwable e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -142,6 +122,5 @@ public class LoginPanel extends GeneralaPanel{
 	}
 	public void loginError() {
 		txtRespuesta.setText("Error en los datos del usuario");
-		//JOptionPane.showMessageDialog(this, "Error en los datos del usuario", "Error", 1);
 	}
 }

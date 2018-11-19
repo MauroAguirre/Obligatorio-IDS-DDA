@@ -16,7 +16,6 @@ public class ClientMain {
 					MainWindow main = new MainWindow();
 					css.setMainWindow(main);
 					main.getFrame().setContentPane(new LoginPanel());
-					//main.GetFrame().add(new LoginPanel());
 					main.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -34,7 +34,9 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	public void setMainWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 	}
-	
+	public MainWindow getMainWindow() {
+		return this.mainWindow;
+	}
 	public int getId() {
 		return id;
 	}
@@ -79,7 +81,6 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 						}while(queue.peek() !=null);
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -89,37 +90,17 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	@Override
 	public void update(GameNotification notification) {
-		try {
-			switch(notification.getType()) {
-				case LOGIN:
-					loginController.Verificar(mainWindow.getFrame(),notification);
-					break;
-				case REGISTRY:
-					break;
-				default:
-					break;
-			}
-		/*
-		JFrame frame = mainWindow.getFrame();
-		try {
-			switch(notification.getType()) {
-				case LOGIN:
-					frame.setContentPane(new RegistryPanel());
-					frame.setVisible(true);
-					break;
-				case LOGIN_ERROR:
-					LoginPanel d = (LoginPanel)frame.getContentPane();
-					d.loginError();
-					break;
-				default:
-					break;
-			}
-		*/
-			Thread.sleep(5000);
-			System.out.println("El cliente: "+notification.getId()+" quiso: "+notification.getType());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		switch(notification.getType()) {
+			case LOGIN:
+				loginController.Verificar(mainWindow.getFrame(),notification);
+				break;
+			case REGISTRY:
+				break;
+			default:
+				break;
 		}
+		//Thread.sleep(5000);
+		System.out.println("El cliente: "+notification.getId()+" quiso: "+notification.getType());
 	}
 	
 }

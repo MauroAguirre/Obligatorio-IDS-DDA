@@ -3,6 +3,9 @@ package uy.edu.cei.Obligatorio.Server.Impl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
@@ -19,15 +22,17 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 	private static final long serialVersionUID = 1L;
 	public UsuarioServiceMemoryImpl usuarioServiceMemoryImpl;
 	private List<Observer> observers;
+	private EntityManager entityManager;
 
-	public UsuarioControllerImpl(List<Observer> observers) throws RemoteException {
+	public UsuarioControllerImpl(List<Observer> observers,EntityManager em) throws RemoteException {
 		this.observers = observers;
+		this.entityManager = em;
 	}
 	
 	public void VerificarUsuario(String usuario, String contra, int id) throws RemoteException {
 		System.out.println("Usuario: "+usuario+" Contraseña: "+contra+" Id: "+id);
 		
-		UsuarioService us = UsuarioService.userServiceFactory();
+		UsuarioService us = UsuarioService.userServiceFactory(entityManager);
 		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
 		GameNotification gameNotification;
 		if(usuarioModel != null && usuarioModel.GetContra().equals(contra)) {

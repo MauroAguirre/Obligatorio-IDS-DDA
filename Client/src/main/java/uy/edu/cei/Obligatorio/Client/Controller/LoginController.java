@@ -19,6 +19,7 @@ public class LoginController{
 			switch(gn.getAction()) {
 				case LOG:
 					frame.setContentPane(new MainPanel());
+					frame.setVisible(true);
 					break;
 				case ERROR:
 					lp.loginError();

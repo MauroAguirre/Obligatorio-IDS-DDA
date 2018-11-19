@@ -16,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 public class RegistryPanel extends GeneralaPanel {
 	private JTextField txtUsuario;
@@ -57,22 +60,21 @@ public class RegistryPanel extends GeneralaPanel {
 		txtContra.setColumns(10);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				try {
+					EventQueueClient css = EventQueueClient.Instancia();
+					css.getMainWindow().getFrame().setContentPane(new MainPanel());
+					css.getMainWindow().getFrame().setVisible(true);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		springLayout.putConstraint(SpringLayout.WEST, btnSalir, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, this);
 		add(btnSalir);
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					/*
-					master.GetFrame().setVisible(false);
-					master.GetFrame().dispose();
-					*/
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}			
-			}
-		});
 		
 		JButton btnAgregar = new JButton("Agregar");
 		springLayout.putConstraint(SpringLayout.NORTH, btnAgregar, 0, SpringLayout.NORTH, btnSalir);
