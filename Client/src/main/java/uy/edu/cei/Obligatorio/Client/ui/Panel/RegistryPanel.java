@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SpringLayout;
 
-import uy.edu.cei.Obligatorio.Client.EventQueueClient;
+import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
@@ -28,7 +28,7 @@ public class RegistryPanel extends GeneralaPanel {
 	 * Create the panel.
 	 */
 	public RegistryPanel() {
-		setBackground(Color.GREEN);
+		setBackground(Color.PINK);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
@@ -38,28 +38,30 @@ public class RegistryPanel extends GeneralaPanel {
 		add(lblRegistro);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
-		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 97, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblUsuario, 68, SpringLayout.WEST, this);
 		add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contraseña");
-		springLayout.putConstraint(SpringLayout.NORTH, lblContrasea, 59, SpringLayout.SOUTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.EAST, lblContrasea, 0, SpringLayout.EAST, lblUsuario);
+		springLayout.putConstraint(SpringLayout.NORTH, lblContrasea, 35, SpringLayout.SOUTH, lblUsuario);
+		springLayout.putConstraint(SpringLayout.WEST, lblContrasea, 48, SpringLayout.WEST, this);
 		add(lblContrasea);
 		
 		txtUsuario = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtUsuario, 0, SpringLayout.NORTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.WEST, txtUsuario, 64, SpringLayout.EAST, lblUsuario);
+		springLayout.putConstraint(SpringLayout.NORTH, txtUsuario, 55, SpringLayout.SOUTH, lblRegistro);
+		springLayout.putConstraint(SpringLayout.WEST, txtUsuario, 168, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 3, SpringLayout.NORTH, txtUsuario);
+		springLayout.putConstraint(SpringLayout.EAST, lblUsuario, -65, SpringLayout.WEST, txtUsuario);
 		add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		txtContra = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, txtContra, 0, SpringLayout.SOUTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.EAST, txtContra, 0, SpringLayout.EAST, txtUsuario);
+		springLayout.putConstraint(SpringLayout.NORTH, txtContra, -3, SpringLayout.NORTH, lblContrasea);
+		springLayout.putConstraint(SpringLayout.WEST, txtContra, 0, SpringLayout.WEST, txtUsuario);
 		add(txtContra);
 		txtContra.setColumns(10);
 		
 		JButton btnSalir = new JButton("Salir");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnSalir, -10, SpringLayout.EAST, this);
 		btnSalir.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -72,25 +74,40 @@ public class RegistryPanel extends GeneralaPanel {
 				}
 			}
 		});
-		springLayout.putConstraint(SpringLayout.WEST, btnSalir, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, this);
 		add(btnSalir);
 		
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					EventQueueClient css = EventQueueClient.Instancia();
+					UsuarioModel usu = css.GetServer().getUsuarioControllerImpl().agregarUsuario(txtUsuario.getText(), txtContra.getText());
+					if(usu == null)
+						textRespuesta.setText("Error al agregar usuario");
+					else
+						textRespuesta.setText("Usuario agregado");
+					
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnAgregar, 0, SpringLayout.NORTH, btnSalir);
-		springLayout.putConstraint(SpringLayout.EAST, btnAgregar, -10, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.WEST, btnAgregar, 10, SpringLayout.WEST, this);
 		add(btnAgregar);
 		
 		JLabel lblRespuesta = new JLabel("Respuesta");
-		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 31, SpringLayout.SOUTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 0, SpringLayout.WEST, lblContrasea);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, 45, SpringLayout.SOUTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 104, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 47, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, -91, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 0, SpringLayout.EAST, lblUsuario);
 		add(lblRespuesta);
 		
 		textRespuesta = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textRespuesta, 0, SpringLayout.NORTH, lblRespuesta);
-		springLayout.putConstraint(SpringLayout.WEST, textRespuesta, 0, SpringLayout.WEST, txtUsuario);
+		textRespuesta.setEditable(false);
+		springLayout.putConstraint(SpringLayout.NORTH, textRespuesta, 26, SpringLayout.SOUTH, txtContra);
+		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 3, SpringLayout.NORTH, textRespuesta);
+		springLayout.putConstraint(SpringLayout.EAST, textRespuesta, 0, SpringLayout.EAST, txtUsuario);
 		add(textRespuesta);
 		textRespuesta.setColumns(10);
 	}

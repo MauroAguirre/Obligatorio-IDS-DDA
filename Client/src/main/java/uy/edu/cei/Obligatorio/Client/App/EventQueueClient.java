@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Client;
+package uy.edu.cei.Obligatorio.Client.App;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

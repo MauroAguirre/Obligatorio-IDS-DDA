@@ -6,7 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
-import uy.edu.cei.Obligatorio.Client.EventQueueClient;
+import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

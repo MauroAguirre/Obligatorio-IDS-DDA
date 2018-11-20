@@ -1,6 +1,7 @@
 package uy.edu.cei.Obligatorio.Domain;
 
 import java.io.Serializable;
+import java.rmi.Remote;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
+//@NamedQuery(name = "UsuarioModel.UserFindByUserName", query = "SELECT u FROM UsuarioModel u WHERE u.usuario = :usuario")
 @NamedQuery(name = "UsuarioModel.UserFindByUserName", query = "SELECT u FROM UsuarioModel u WHERE u.usuario = :usuario")
-public class UsuarioModel implements Serializable {
+public class UsuarioModel implements Remote, Serializable {
 	
 	/**
 	 * 

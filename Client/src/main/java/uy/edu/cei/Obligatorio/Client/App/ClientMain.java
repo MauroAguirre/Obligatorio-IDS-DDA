@@ -1,8 +1,9 @@
-package uy.edu.cei.Obligatorio.Client;
+package uy.edu.cei.Obligatorio.Client.App;
 
 import java.awt.EventQueue;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 

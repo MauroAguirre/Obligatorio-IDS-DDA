@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server;
+package uy.edu.cei.Obligatorio.Server.App;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
+import uy.edu.cei.Obligatorio.Server.JPAService;
 import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
 
 /**
@@ -22,6 +23,7 @@ import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
  */
 public class ServerMain {
 	public static void main(String[] args) throws RemoteException {
+		JPAService jpa = JPAService.getInstance();
 		System.out.println("App server activated");
 		Server server = new ServerImpl();
 		LocateRegistry.createRegistry(1099);

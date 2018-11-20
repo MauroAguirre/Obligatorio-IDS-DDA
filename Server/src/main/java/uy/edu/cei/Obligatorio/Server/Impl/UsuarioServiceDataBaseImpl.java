@@ -1,37 +1,60 @@
 package uy.edu.cei.Obligatorio.Server.Impl;
 
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
+import uy.edu.cei.Obligatorio.Server.JPAService;
 import uy.edu.cei.Obligatorio.Server.UsuarioService;
 
 public class UsuarioServiceDataBaseImpl implements UsuarioService {
 	private static UsuarioServiceDataBaseImpl instancia;
-	private static EntityManager entityManager;
-	public static UsuarioServiceDataBaseImpl getInstancia(EntityManager em) {
+	public static UsuarioServiceDataBaseImpl getInstancia() {
 		if(instancia==null) {
 			instancia = new UsuarioServiceDataBaseImpl();
-			entityManager = em;
 		}
 		return instancia;
 	}
-	@Override
-	public Map<String, UsuarioModel> ListaUsuarios() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
+
 	public UsuarioModel buscarUsuarioPorNombre(String nombre) throws RemoteException {
-		entityManager.getTransaction().begin();
-		TypedQuery<UsuarioModel> query = entityManager.createNamedQuery("UsuarioModel.UserFindByUserName",UsuarioModel.class);
+		EntityManager em = JPAService.getInstance().getEM();
+		UsuarioModel usu = null;
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.UserFindByUserName",UsuarioModel.class);
 		query.setParameter("usuario",nombre);
-		UsuarioModel usuQuery = query.getSingleResult();
-		entityManager.getTransaction().commit();
-		return usuQuery;
+		List<UsuarioModel> results = query.getResultList();
+		if(!results.isEmpty())
+			usu = query.getSingleResult();
+		em.getTransaction().commit();
+		return usu;
+	}
+
+	public UsuarioModel registrar(String nombre, String contra) throws RemoteException {
+		EntityManager em = JPAService.getInstance().getEM();
+		UsuarioModel usu = null; // te cree la variable para que la puedas usar en la linea 44
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.UserFindByUserName",UsuarioModel.class);
+		query.setParameter("usuario",nombre);
+		List<UsuarioModel> results = query.getResultList();
+		if(results.isEmpty()) {
+			usu = new UsuarioModel(nombre,contra);
+			em.persist(usu);
+		}
+		em.getTransaction().commit();
+		int dsadsad = 43243;
+		return usu; //aca iba return usuQuery;
+	}
+
+	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
+		EntityManager em = JPAService.getInstance().getEM();
+		em.getTransaction().begin();
+		//em.ge
+		em.getTransaction().commit();
+		return null;
 	}
 
 }

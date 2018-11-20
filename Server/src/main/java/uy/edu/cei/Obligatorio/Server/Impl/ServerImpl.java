@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
+import uy.edu.cei.Obligatorio.Server.JPAService;
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
@@ -24,21 +25,12 @@ public class ServerImpl implements Server, Observable {
 	}
 	
 	public ServerImpl() throws RemoteException {
+		
 		observers = new LinkedList<>();
 		new LinkedList<>();
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaDS");
-		EntityManager em = emf.createEntityManager(); 
-		
-		usuarioControllerImpl = new UsuarioControllerImpl(observers,em);
+		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 		//ingresar
-		em.getTransaction().begin();
-		UsuarioModel u = new UsuarioModel("mauro","123");
-		RegistroModel r1 = new RegistroModel("kakaroto");
-		RegistroModel r2 = new RegistroModel("ponele sabor");
-		em.persist(u);
-		u.getRegistros().add(r1);
-		u.getRegistros().add(r2);
-		em.getTransaction().commit();
+	
 		//modificar 
 		/*
 		em.getTransaction().begin();

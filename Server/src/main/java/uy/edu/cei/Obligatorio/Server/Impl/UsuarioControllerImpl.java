@@ -16,23 +16,18 @@ import uy.edu.cei.Obligatorio.Server.UsuarioService;
 
 public class UsuarioControllerImpl extends UnicastRemoteObject implements UsuarioController {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public UsuarioServiceMemoryImpl usuarioServiceMemoryImpl;
 	private List<Observer> observers;
-	private EntityManager entityManager;
+	private UsuarioService us;
 
-	public UsuarioControllerImpl(List<Observer> observers,EntityManager em) throws RemoteException {
+	public UsuarioControllerImpl(List<Observer> observers) throws RemoteException {
 		this.observers = observers;
-		this.entityManager = em;
+		this.us = UsuarioService.userServiceFactory();
 	}
 	
-	public void VerificarUsuario(String usuario, String contra, int id) throws RemoteException {
+	public void verificarUsuario(String usuario, String contra, int id) throws RemoteException {
 		System.out.println("Usuario: "+usuario+" Contraseña: "+contra+" Id: "+id);
-		
-		UsuarioService us = UsuarioService.userServiceFactory(entityManager);
 		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
 		GameNotification gameNotification;
 		if(usuarioModel != null && usuarioModel.GetContra().equals(contra)) {
@@ -46,5 +41,14 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 				break;
 			}
 		}
+	}
+
+	public UsuarioModel agregarUsuario(String nombre, String contra) throws RemoteException {
+		return us.registrar(nombre, contra);
+	}
+
+	@Override
+	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
+		return us.ListaUsuarios();
 	}
 }

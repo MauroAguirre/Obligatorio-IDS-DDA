@@ -3,6 +3,7 @@ package uy.edu.cei.Obligatorio.Server.Impl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -39,8 +40,15 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 		return this.users.get(username);
 	}
 
+
 	@Override
-	public Map<String, UsuarioModel> ListaUsuarios() throws RemoteException {
+	public UsuarioModel registrar(String mauro, String contra) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
