@@ -18,109 +18,88 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginPanel extends GeneralaPanel{
 
 	private static final long serialVersionUID = 1L;
-	private JTextField txtUsuario;
-	private JPasswordField pwdContra;
-	private JTextField txtRespuesta;
-
+	private JTextField textUsuario;
+	private JPasswordField passwordContra;
+	private JLabel lblRespuesta;
+	
 	public LoginPanel() {
-		setBackground(Color.GRAY);
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+		this.setSize(640, 480);
+		setBackground(new Color(0, 191, 255));
+		setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login");
-		springLayout.putConstraint(SpringLayout.NORTH, lblLogin, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblLogin, 41, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblLogin, 88, SpringLayout.WEST, this);
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.WEST, lblLogin, 10, SpringLayout.WEST, this);
+		lblLogin.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblLogin.setBounds(284, 33, 60, 23);
 		add(lblLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblUsuario, 82, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 51, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblUsuario, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblUsuario, 88, SpringLayout.WEST, this);
-		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUsuario.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblUsuario.setBounds(62, 139, 83, 23);
 		add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contraseña");
-		springLayout.putConstraint(SpringLayout.NORTH, lblContrasea, 14, SpringLayout.SOUTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.WEST, lblContrasea, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblContrasea, 43, SpringLayout.SOUTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.EAST, lblContrasea, 88, SpringLayout.WEST, this);
-		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblContrasea.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblContrasea.setBounds(62, 237, 107, 30);
 		add(lblContrasea);
 		
-		txtUsuario = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtUsuario, 51, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, txtUsuario, 152, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtUsuario, 82, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, txtUsuario, 440, SpringLayout.WEST, this);
-		add(txtUsuario);
-		txtUsuario.setColumns(10);
+		textUsuario = new JTextField();
+		textUsuario.setFont(new Font("Forte", Font.PLAIN, 20));
+		textUsuario.setBounds(226, 138, 175, 24);
+		add(textUsuario);
+		textUsuario.setColumns(10);
 		
-		pwdContra = new JPasswordField();
-		springLayout.putConstraint(SpringLayout.EAST, pwdContra, 440, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, pwdContra, 125, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, pwdContra, 94, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, pwdContra, 152, SpringLayout.WEST, this);
-		add(pwdContra);	
-		
-		JButton btnLogear = new JButton("Logear");
-		springLayout.putConstraint(SpringLayout.NORTH, btnLogear, 249, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, btnLogear, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLogear, 290, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnLogear, 101, SpringLayout.WEST, this);
-		btnLogear.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		add(btnLogear);
-		btnLogear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
 				try {
-					String nombre = txtUsuario.getText();
-					String contra= new String(pwdContra.getPassword());
+					String nombre = textUsuario.getText();
+					String contra= new String(passwordContra.getPassword());
 					EventQueueClient css = EventQueueClient.Instancia();
 					UsuarioController uci = css.GetServer().getUsuarioControllerImpl();
 					uci.verificarUsuario(nombre, contra,css.getId());
-				} catch (Throwable e1) {
+				} catch (RemoteException e1) {
 					e1.printStackTrace();
-				}			
+				}
+				
 			}
 		});
+		btnEntrar.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnEntrar.setBounds(62, 380, 89, 23);
+		add(btnEntrar);
 		
 		JButton btnSalir = new JButton("Salir");
-		springLayout.putConstraint(SpringLayout.WEST, btnSalir, -101, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnSalir, -10, SpringLayout.EAST, this);
-		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		add(btnSalir);
-		
-		txtRespuesta = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, 128, SpringLayout.SOUTH, txtRespuesta);
-		springLayout.putConstraint(SpringLayout.NORTH, btnSalir, 87, SpringLayout.SOUTH, txtRespuesta);
-		txtRespuesta.setEditable(false);
-		springLayout.putConstraint(SpringLayout.NORTH, txtRespuesta, 6, SpringLayout.SOUTH, pwdContra);
-		springLayout.putConstraint(SpringLayout.WEST, txtRespuesta, 0, SpringLayout.WEST, txtUsuario);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtRespuesta, 37, SpringLayout.SOUTH, pwdContra);
-		springLayout.putConstraint(SpringLayout.EAST, txtRespuesta, 0, SpringLayout.EAST, txtUsuario);
-		txtRespuesta.setColumns(10);
-		add(txtRespuesta);
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnSalir.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
 				try {
 					EventQueueClient css = EventQueueClient.Instancia();
 					css.getMainWindow().getFrame().dispose();
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
+				} catch (RemoteException e1) {
 					e1.printStackTrace();
-				}	
+				}
 			}
 		});
+		btnSalir.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnSalir.setBounds(482, 380, 89, 23);
+		add(btnSalir);
+		
+		lblRespuesta = new JLabel("");
+		lblRespuesta.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblRespuesta.setBounds(226, 380, 175, 23);
+		add(lblRespuesta);
+		
+		passwordContra = new JPasswordField();
+		passwordContra.setFont(new Font("Forte", Font.PLAIN, 20));
+		passwordContra.setBounds(226, 240, 175, 23);
+		add(passwordContra);
 		
 	}
 	public void loginError() {
-		txtRespuesta.setText("Error en los datos del usuario");
+		lblRespuesta.setText("Error en los datos del usuario");
 	}
 }
