@@ -14,26 +14,70 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
+
+import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
+import uy.edu.cei.Obligatorio.Client.Controller.MainController;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.GeneralaPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.MainPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.RegistryPanel;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.WaitingPanel;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 
 public class MainWindow{
 
 	private JFrame frame;
+	private static MainWindow instancia;
+	
+	public static MainWindow getInstancia() {
+		if(instancia == null)
+			instancia = new MainWindow();
+		return instancia;
+	}
 	
 	public JFrame getFrame() {
 		return frame;
 	}
 
-	public MainWindow(){
+	private MainWindow(){
 		initialize();
+	}
+	
+	public void cambiarVentana(String ventana) {
+		switch(ventana) {
+			case "main":
+				MainController mainController = MainController.getInstancia();
+				frame.setContentPane(mainController.darPanel());
+				frame.setVisible(true);
+				break;
+			case "login":
+				LoginController loginController = LoginController.getInstancia();
+				frame.setContentPane(loginController.darPanel());
+				frame.setVisible(true);
+				loginController.intro();
+				break;
+			case "registry":
+				//falta el controller
+				RegistryPanel panel3 = new RegistryPanel();
+				frame.setContentPane(panel3);
+				frame.setVisible(true);
+				break;
+			case "kill":
+				frame.dispose();
+				break;
+			case "waiting":
+				frame.setContentPane(new WaitingPanel());
+				frame.repaint();
+				//frame.setVisible(true);
+				break;
+		}
 	}
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640,480);
+		frame.setBounds(300, 300, 645,510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		//
 		try {
 	         // Open an audio input stream.
@@ -43,7 +87,11 @@ public class MainWindow{
 	         Clip clip = AudioSystem.getClip();
 	         // Open audio clip and load samples from the audio input stream.
 	         clip.open(audioIn);
-	         clip.loop(Clip.LOOP_CONTINUOUSLY);
+	         //clip.loop(0);
+	         
+	         
+	         //lo siguientes es para que se loope
+	         //clip.loop(Clip.LOOP_CONTINUOUSLY);
 	      } catch (UnsupportedAudioFileException e) {
 	         e.printStackTrace();
 	      } catch (IOException e) {

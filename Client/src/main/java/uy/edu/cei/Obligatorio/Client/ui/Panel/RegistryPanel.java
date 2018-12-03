@@ -1,19 +1,13 @@
 package uy.edu.cei.Obligatorio.Client.ui.Panel;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.SpringLayout;
 
 import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
-import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -21,12 +15,12 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
 public class RegistryPanel extends GeneralaPanel {
+
+	private static final long serialVersionUID = 1L;
 	private JTextField txtUsuario;
 	private JTextField txtContra;
 	private JTextField textRespuesta;
-	/**
-	 * Create the panel.
-	 */
+
 	public RegistryPanel() {
 		setBackground(Color.PINK);
 		SpringLayout springLayout = new SpringLayout();
@@ -64,14 +58,8 @@ public class RegistryPanel extends GeneralaPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnSalir, -10, SpringLayout.EAST, this);
 		btnSalir.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				try {
-					EventQueueClient css = EventQueueClient.Instancia();
-					css.getMainWindow().getFrame().setContentPane(new MainPanel());
-					css.getMainWindow().getFrame().setVisible(true);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				MainWindow mainWindow = MainWindow.getInstancia();
+				mainWindow.cambiarVentana("main");
 			}
 		});
 		add(btnSalir);

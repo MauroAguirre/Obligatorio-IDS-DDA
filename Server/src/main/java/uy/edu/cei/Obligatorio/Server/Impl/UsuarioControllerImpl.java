@@ -12,7 +12,7 @@ import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationAction;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationType;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.UsuarioService;
+import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 
 public class UsuarioControllerImpl extends UnicastRemoteObject implements UsuarioController {
 
@@ -26,12 +26,12 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 		this.us = UsuarioService.userServiceFactory();
 	}
 	
-	public void verificarUsuario(String usuario, String contra, int id) throws RemoteException {
+	public void verificarUsuario(String usuario, String contra, long id) throws RemoteException {
 		System.out.println("Usuario: "+usuario+" Contraseña: "+contra+" Id: "+id);
 		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
 		GameNotification gameNotification;
 		if(usuarioModel != null && usuarioModel.GetContra().equals(contra)) {
-			gameNotification = new GameNotification(GameNotificationType.LOGIN,GameNotificationAction.LOG,id);
+			gameNotification = new GameNotification(GameNotificationType.LOGIN,GameNotificationAction.LOG,id,usuarioModel.getId());
 		}
 		else
 			gameNotification = new GameNotification(GameNotificationType.LOGIN,GameNotificationAction.ERROR,id);

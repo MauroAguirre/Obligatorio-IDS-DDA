@@ -6,5 +6,5 @@ import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 
 public interface Observer extends Remote {
 	public void update(GameNotification notification) throws RemoteException;
-	public int getId() throws RemoteException;
+	public long getId() throws RemoteException;
 }

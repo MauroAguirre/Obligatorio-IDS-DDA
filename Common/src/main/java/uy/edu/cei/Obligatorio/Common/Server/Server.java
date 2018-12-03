@@ -13,5 +13,4 @@ public interface Server extends Remote,Observable {
 	public void sayHello(String name) throws RemoteException;
 	public void TestConnection() throws RemoteException;
 	public UsuarioController getUsuarioControllerImpl() throws RemoteException;
-	public int asignarIdACliente() throws RemoteException;
 }

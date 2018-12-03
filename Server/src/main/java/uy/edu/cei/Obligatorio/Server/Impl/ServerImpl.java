@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.JPAService;
+import uy.edu.cei.Obligatorio.Server.Service.JPAService;
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
@@ -18,14 +18,11 @@ import uy.edu.cei.Obligatorio.Common.Server.Server;
 public class ServerImpl implements Server, Observable {
 	
 	private UsuarioControllerImpl usuarioControllerImpl;
-	private static int clientes;
 	private List<Observer> observers;
-	public int asignarIdACliente() throws RemoteException {
-		return ++clientes;
-	}
+	private long ultimaId;
 	
 	public ServerImpl() throws RemoteException {
-		
+		ultimaId=0;
 		observers = new LinkedList<>();
 		new LinkedList<>();
 		usuarioControllerImpl = new UsuarioControllerImpl(observers);
@@ -55,9 +52,11 @@ public class ServerImpl implements Server, Observable {
 	}
 	
 	@Override
-	public void subscribe(Observer observer) throws RemoteException {
+	public long subscribe(Observer observer) throws RemoteException {
 		System.out.println("Observer agregado");
 		this.observers.add(observer);
+		ultimaId--;
+		return ultimaId;
 	}
 	
 	@Override
@@ -77,6 +76,8 @@ public class ServerImpl implements Server, Observable {
 		System.out.println("Hemos conectado con el server yeahh boooyyyyy");
 		
 	}
+
+
 
 
 }

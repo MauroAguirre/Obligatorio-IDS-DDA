@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 
 public interface Observable extends Remote {
 
-	public void subscribe(Observer observer) throws RemoteException;
+	public long subscribe(Observer observer) throws RemoteException;
 
 }

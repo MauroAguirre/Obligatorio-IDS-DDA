@@ -10,14 +10,13 @@ import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 public class ClientMain {
 
 	public static void main(String[] args) throws RemoteException, NotBoundException {
+		System.setProperty("java.security.policy", "file:C:\\java.policy");
+		System.setSecurityManager(new SecurityManager());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
-					EventQueueClient css = EventQueueClient.Instancia();
-					MainWindow main = new MainWindow();
-					css.setMainWindow(main);
-					main.getFrame().setContentPane(new LoginPanel());
-					main.getFrame().setVisible(true);
+					MainWindow main = MainWindow.getInstancia();
+					main.cambiarVentana("login");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

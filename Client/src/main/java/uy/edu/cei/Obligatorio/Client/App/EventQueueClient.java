@@ -25,20 +25,15 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static EventQueueClient instancia = null;
-	private MainWindow mainWindow;
 	private Server server;
 	private Queue<GameNotification> queue;
-	private int id;
-	private LoginController loginController;
+	private long id;
 	
-	public void setMainWindow(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
-	}
-	public MainWindow getMainWindow() {
-		return this.mainWindow;
-	}
-	public int getId() {
+	public long getId() {
 		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public static EventQueueClient Instancia() throws RemoteException {
@@ -48,16 +43,13 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	}
 	public EventQueueClient() throws RemoteException{
 		try {
-			loginController = new LoginController();
 			this.queue = new LinkedList<>();
 			Registry registry = LocateRegistry.getRegistry(1099);
 			server= (Server) registry.lookup("server");
 			server.TestConnection();
-			server.subscribe(this);
-			id=server.asignarIdACliente();
-			System.out.println("Cliente id: "+id);
+			id = server.subscribe(this);
 			this.initializeThread();
-			
+			System.out.println(id);
 		} catch (RemoteException | NotBoundException e) {
 			// tirar alguna excepcion para arriba
 			e.printStackTrace();
@@ -92,7 +84,8 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	public void update(GameNotification notification) {
 		switch(notification.getType()) {
 			case LOGIN:
-				loginController.Verificar(mainWindow.getFrame(),notification);
+				LoginController loginController = LoginController.getInstancia();
+				loginController.Verificar(notification);
 				break;
 			case REGISTRY:
 				break;

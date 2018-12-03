@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server;
+package uy.edu.cei.Obligatorio.Server.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

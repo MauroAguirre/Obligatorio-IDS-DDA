@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.JPAService;
-import uy.edu.cei.Obligatorio.Server.UsuarioService;
+import uy.edu.cei.Obligatorio.Server.Service.JPAService;
+import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 
 public class UsuarioServiceDataBaseImpl implements UsuarioService {
 	private static UsuarioServiceDataBaseImpl instancia;

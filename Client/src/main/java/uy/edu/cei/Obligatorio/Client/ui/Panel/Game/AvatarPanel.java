@@ -13,10 +13,10 @@ public class AvatarPanel extends JPanel {
 	 */
 	public AvatarPanel(int num) {
 		setLayout(null);
-		this.setSize(150, 480);
+		this.setSize(340, 340);
 		JLabel img = new JLabel();
 		img.setLocation(0, 0);
-		img.setSize(150,480);
+		img.setSize(340,340);
 		add(img);
 		URL url = null;
 		switch(num) {

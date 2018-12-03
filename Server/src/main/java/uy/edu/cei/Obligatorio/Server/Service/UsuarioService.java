@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server;
+package uy.edu.cei.Obligatorio.Server.Service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -14,8 +14,8 @@ import javax.persistence.TypedQuery;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.JPAService;
 import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
+import uy.edu.cei.Obligatorio.Server.Service.JPAService;
 
 /**
  * Hello world!
@@ -23,6 +23,8 @@ import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
  */
 public class ServerMain {
 	public static void main(String[] args) throws RemoteException {
+		System.setProperty("java.security.policy", "file:C:\\java.policy");
+		System.setSecurityManager(new SecurityManager());
 		JPAService jpa = JPAService.getInstance();
 		System.out.println("App server activated");
 		Server server = new ServerImpl();

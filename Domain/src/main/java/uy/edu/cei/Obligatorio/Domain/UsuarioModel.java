@@ -46,7 +46,11 @@ public class UsuarioModel implements Remote, Serializable {
 		this.contra = contra;
 		this.registros = new ArrayList<>();
 	}
-
+	
+	public Long getId() {
+		return this.id;
+	}
+	
 	public void SetUsuario(String usuario) {
 		this.usuario = usuario;
 	}

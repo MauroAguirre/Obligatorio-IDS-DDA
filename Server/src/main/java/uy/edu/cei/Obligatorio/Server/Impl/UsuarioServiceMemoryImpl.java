@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.UsuarioService;
+import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 
 public class UsuarioServiceMemoryImpl implements UsuarioService {
 
