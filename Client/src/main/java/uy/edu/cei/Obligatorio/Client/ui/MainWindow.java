@@ -75,7 +75,7 @@ public class MainWindow{
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(300, 300, 645,510);
+		frame.setBounds(200, 200, 645,510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		//

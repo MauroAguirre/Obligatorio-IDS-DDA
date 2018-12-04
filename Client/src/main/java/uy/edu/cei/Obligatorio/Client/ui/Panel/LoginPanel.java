@@ -120,7 +120,7 @@ public class LoginPanel extends GeneralaPanel{
 		btnSalir.setBounds(343, 357, 89, 23);
 		add(btnSalir);
 		
-		lblRespuesta = new JLabel("");
+		lblRespuesta = new JLabel("tewfbgfdfds");
 		lblRespuesta.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblRespuesta.setBounds(211, 301, 175, 23);
 		add(lblRespuesta);

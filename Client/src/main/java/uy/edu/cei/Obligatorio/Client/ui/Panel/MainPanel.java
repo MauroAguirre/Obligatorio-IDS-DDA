@@ -26,6 +26,11 @@ public class MainPanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
+		JLabel lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblUsuarios.setBounds(255, 123, 86, 20);
+		add(lblUsuarios);
+		
 		lblMenuPrincipal = new JLabel("Menu Principal");
 		lblMenuPrincipal.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblMenuPrincipal.setBounds(231, 63, 146, 20);

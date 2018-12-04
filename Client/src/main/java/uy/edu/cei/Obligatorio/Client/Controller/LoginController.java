@@ -14,10 +14,14 @@ public class LoginController  {
 	private static LoginController instancia;
 	private static LoginPanel panel;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static LoginController getInstancia() {
 		if(instancia == null) {
 			instancia = new LoginController();
 			panel = new LoginPanel();
+			panel.getLblRespuesta().setText("");
 		}
 		return instancia;
 	}
@@ -68,6 +72,8 @@ public class LoginController  {
 								panel.getBtnEntrar().repaint();
 								panel.getBtnSalir().setBounds(343, 357+(contador*2), 89, 23);
 								panel.getBtnSalir().repaint();
+								panel.getLblRespuesta().setBounds(211, 101+(contador*2), 175, 23);
+								panel.getLblRespuesta().repaint();
 								contador++;
 								Thread.sleep(25);
 							} catch (InterruptedException e) {
@@ -114,6 +120,8 @@ public class LoginController  {
 						panel.getBtnEntrar().repaint();
 						panel.getBtnSalir().setBounds(343, 557-(contador*2), 89, 23);
 						panel.getBtnSalir().repaint();
+						panel.getLblRespuesta().setBounds(211, 501-(contador*2), 175, 23);
+						panel.getLblRespuesta().repaint();
 						contador++;
 						Thread.sleep(25);
 					} catch (InterruptedException e) {

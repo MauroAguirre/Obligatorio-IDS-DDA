@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.awt.event.ActionEvent;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class GamePanel extends JPanel {
 
@@ -25,19 +27,60 @@ public class GamePanel extends JPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
+		JLabel lblJugadas = new JLabel("Jugadas");
+		lblJugadas.setForeground(Color.RED);
+		lblJugadas.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblJugadas.setBounds(473, 31, 157, 20);
+		add(lblJugadas);
+		
+		JLabel lblGeneralaDoble = new JLabel("Generala doble");
+		lblGeneralaDoble.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblGeneralaDoble.setBounds(473, 360, 157, 20);
+		add(lblGeneralaDoble);
+		
+		JLabel lblGenerala = new JLabel("Generala");
+		lblGenerala.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblGenerala.setBounds(473, 328, 157, 20);
+		add(lblGenerala);
+		
+		JLabel lblPker = new JLabel("Póker");
+		lblPker.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblPker.setBounds(473, 300, 157, 20);
+		add(lblPker);
+		
+		JLabel lblFull = new JLabel("Full");
+		lblFull.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblFull.setBounds(473, 274, 157, 20);
+		add(lblFull);
+		
+		JLabel lblEscalera = new JLabel("Escalera");
+		lblEscalera.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblEscalera.setBounds(473, 243, 157, 20);
+		add(lblEscalera);
+		
+		JLabel lblSumaDeSeis = new JLabel("Suma de Seis");
+		lblSumaDeSeis.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblSumaDeSeis.setBounds(473, 212, 157, 20);
+		add(lblSumaDeSeis);
+		
+		JLabel lblSumaDeCincos = new JLabel("Suma de Cincos");
+		lblSumaDeCincos.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblSumaDeCincos.setBounds(473, 185, 157, 20);
+		add(lblSumaDeCincos);
+		
 		JLabel lblSumaDeCuatros = new JLabel("Suma de Cuatros");
 		lblSumaDeCuatros.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblSumaDeCuatros.setBounds(473, 123, 157, 20);
+		lblSumaDeCuatros.setBounds(473, 155, 157, 20);
 		add(lblSumaDeCuatros);
 		
 		JLabel lblSumaDeDos = new JLabel("Suma de Dos");
 		lblSumaDeDos.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblSumaDeDos.setBounds(473, 61, 157, 20);
+		lblSumaDeDos.setBounds(473, 93, 157, 20);
 		add(lblSumaDeDos);
 		
 		JLabel lblJugada = new JLabel("Suma de Unos");
 		lblJugada.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblJugada.setBounds(473, 30, 157, 20);
+		lblJugada.setBounds(473, 62, 157, 20);
 		add(lblJugada);
 		
 		JLabel label = new JLabel("Puntaje");
@@ -64,7 +107,7 @@ public class GamePanel extends JPanel {
 			}
 		});
 		btnNewButton.setFont(new Font("Forte", Font.PLAIN, 20));
-		btnNewButton.setBounds(101, 446, 142, 23);
+		btnNewButton.setBounds(463, 446, 167, 23);
 		add(btnNewButton);
 		
 		JButton btnLockearJugada = new JButton("Lockear Jugada");
@@ -73,7 +116,7 @@ public class GamePanel extends JPanel {
 			}
 		});
 		btnLockearJugada.setFont(new Font("Forte", Font.PLAIN, 20));
-		btnLockearJugada.setBounds(253, 446, 167, 23);
+		btnLockearJugada.setBounds(463, 412, 167, 23);
 		add(btnLockearJugada);
 		
 		DicePanel dice1 = new DicePanel(1,"red");
@@ -104,7 +147,7 @@ public class GamePanel extends JPanel {
 		
 		JLabel lblSumaDeTres = new JLabel("Suma de Tres");
 		lblSumaDeTres.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblSumaDeTres.setBounds(473, 92, 157, 20);
+		lblSumaDeTres.setBounds(473, 124, 157, 20);
 		add(lblSumaDeTres);
 		
 		JLabel img = new JLabel();
