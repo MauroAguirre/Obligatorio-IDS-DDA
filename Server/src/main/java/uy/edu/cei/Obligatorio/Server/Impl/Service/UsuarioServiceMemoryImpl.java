@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server.Impl;
+package uy.edu.cei.Obligatorio.Server.Impl.Service;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

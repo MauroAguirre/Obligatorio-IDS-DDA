@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.Impl.ServerImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Service.ServerImpl;
 import uy.edu.cei.Obligatorio.Server.Service.JPAService;
 
 /**

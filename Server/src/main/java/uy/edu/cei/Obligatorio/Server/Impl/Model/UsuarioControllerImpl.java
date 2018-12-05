@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server.Impl;
+package uy.edu.cei.Obligatorio.Server.Impl.Model;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,6 +12,7 @@ import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationAction;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationType;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
+import uy.edu.cei.Obligatorio.Server.Impl.Service.UsuarioServiceMemoryImpl;
 import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 
 public class UsuarioControllerImpl extends UnicastRemoteObject implements UsuarioController {

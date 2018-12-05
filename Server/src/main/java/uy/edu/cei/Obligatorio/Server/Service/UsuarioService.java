@@ -8,8 +8,8 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.Impl.UsuarioServiceDataBaseImpl;
-import uy.edu.cei.Obligatorio.Server.Impl.UsuarioServiceMemoryImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Service.UsuarioServiceDataBaseImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Service.UsuarioServiceMemoryImpl;
 
 public interface UsuarioService extends Remote {
 

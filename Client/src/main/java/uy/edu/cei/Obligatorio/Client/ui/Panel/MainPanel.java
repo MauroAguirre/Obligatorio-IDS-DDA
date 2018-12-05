@@ -26,8 +26,18 @@ public class MainPanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
+		JLabel lblSalir = new JLabel("Salir");
+		lblSalir.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblSalir.setBounds(269, 360, 47, 20);
+		add(lblSalir);
+		
+		JLabel lblRankings = new JLabel("Rankings");
+		lblRankings.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblRankings.setBounds(255, 303, 86, 20);
+		add(lblRankings);
+		
 		JLabel lblUsuarios = new JLabel("Usuarios");
-		lblUsuarios.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblUsuarios.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblUsuarios.setBounds(255, 123, 86, 20);
 		add(lblUsuarios);
 		
@@ -35,6 +45,17 @@ public class MainPanel extends GeneralaPanel {
 		lblMenuPrincipal.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblMenuPrincipal.setBounds(231, 63, 146, 20);
 		add(lblMenuPrincipal);
+		
+		JLabel lblSalasReales = new JLabel("Salas Reales");
+		lblSalasReales.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblSalasReales.setBounds(231, 182, 122, 20);
+		add(lblSalasReales);
+		
+		JLabel lblSalasVirtuales = new JLabel("Salas Virtuales");
+		lblSalasVirtuales.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblSalasVirtuales.setBounds(231, 242, 133, 20);
+		add(lblSalasVirtuales);
+		
 		JLabel img = new JLabel();
 		img.setLocation(0, 0);
 		img.setSize(640,480);
