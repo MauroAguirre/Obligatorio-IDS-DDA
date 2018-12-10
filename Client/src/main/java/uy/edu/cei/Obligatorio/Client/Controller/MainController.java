@@ -1,12 +1,9 @@
 package uy.edu.cei.Obligatorio.Client.Controller;
 
-import java.rmi.RemoteException;
-
-import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
-import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.MainPanel;
+import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 
-public class MainController {
+public class MainController implements MasterController{
 
 	private static MainController instancia;
 	private static MainPanel panel;
@@ -22,14 +19,13 @@ public class MainController {
 	public MainPanel darPanel() {
 		return panel;
 	}
-	
-	public void IngresarSalaVirtual() {
-		try {
-			EventQueueClient eqc = EventQueueClient.Instancia();
-			
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+	@Override
+	public void respuesta(GameNotification gn) {
+		// TODO Auto-generated method stub
+		
 	}
+
+
+	
 }

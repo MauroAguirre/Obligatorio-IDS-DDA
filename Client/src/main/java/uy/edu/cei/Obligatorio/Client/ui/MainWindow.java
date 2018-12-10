@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 
 import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
 import uy.edu.cei.Obligatorio.Client.Controller.MainController;
+import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.GeneralaPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.MainPanel;
@@ -67,9 +68,12 @@ public class MainWindow{
 				break;
 			case "waiting":
 				frame.setContentPane(new WaitingPanel());
-				frame.repaint();
-				//frame.setVisible(true);
+				frame.setVisible(true);
 				break;
+			case "real":
+				RealPanelController realController = RealPanelController.getInstancia();
+				frame.setContentPane(realController.darPanel());
+				frame.setVisible(true);
 		}
 	}
 	

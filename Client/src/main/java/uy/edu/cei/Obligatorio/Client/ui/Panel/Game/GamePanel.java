@@ -1,6 +1,9 @@
 package uy.edu.cei.Obligatorio.Client.ui.Panel.Game;
 
 import javax.swing.JPanel;
+
+import uy.edu.cei.Obligatorio.Client.ui.Panel.GeneralaPanel;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends GeneralaPanel {
 
 	/**
 	 * Create the panel.

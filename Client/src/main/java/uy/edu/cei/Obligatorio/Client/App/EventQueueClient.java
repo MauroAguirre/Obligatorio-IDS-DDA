@@ -11,6 +11,7 @@ import java.util.Queue;
 import javax.swing.JFrame;
 
 import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
+import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.RegistryPanel;
@@ -83,17 +84,21 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 	@Override
 	public void update(GameNotification notification) {
 		switch(notification.getType()) {
-			case LOGIN:
+			case LOGIN_SUCCES:
+			case LOGIN_ERROR:
 				LoginController loginController = LoginController.getInstancia();
-				loginController.Verificar(notification);
+				loginController.respuesta(notification);
+				break;
+			case REAL_NAMETAKEN:
+			case REAL_CREATED:
+				RealPanelController realController = RealPanelController.getInstancia();
+				realController.respuesta(notification);
 				break;
 			case REGISTRY:
 				break;
 			default:
 				break;
 		}
-		//Thread.sleep(5000);
-		System.out.println("El cliente: "+notification.getId()+" quiso: "+notification.getType());
 	}
 	
 }

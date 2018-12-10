@@ -26,6 +26,18 @@ public class MainPanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
+		JLabel lblSalaReal = new JLabel("Salas Reales");
+		lblSalaReal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainWindow main = MainWindow.getInstancia();
+				main.cambiarVentana("real");
+			}
+		});
+		lblSalaReal.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblSalaReal.setBounds(231, 179, 135, 28);
+		add(lblSalaReal);
+		
 		JLabel lblSalir = new JLabel("Salir");
 		lblSalir.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSalir.setBounds(269, 360, 47, 20);
@@ -46,14 +58,9 @@ public class MainPanel extends GeneralaPanel {
 		lblMenuPrincipal.setBounds(231, 63, 146, 20);
 		add(lblMenuPrincipal);
 		
-		JLabel lblSalasReales = new JLabel("Salas Reales");
-		lblSalasReales.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblSalasReales.setBounds(231, 182, 122, 20);
-		add(lblSalasReales);
-		
 		JLabel lblSalasVirtuales = new JLabel("Salas Virtuales");
 		lblSalasVirtuales.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblSalasVirtuales.setBounds(231, 242, 133, 20);
+		lblSalasVirtuales.setBounds(231, 240, 135, 28);
 		add(lblSalasVirtuales);
 		
 		JLabel img = new JLabel();

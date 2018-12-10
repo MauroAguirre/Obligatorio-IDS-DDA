@@ -9,7 +9,7 @@ import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 
-public class LoginController  {
+public class LoginController implements MasterController {
 	
 	private static LoginController instancia;
 	private static LoginPanel panel;
@@ -43,10 +43,10 @@ public class LoginController  {
 		}
 	}
 	
-	public void Verificar(GameNotification gn) {
+	public void respuesta(GameNotification gn) {
 		MainWindow mainWindow = MainWindow.getInstancia();
-		switch(gn.getAction()) {
-			case LOG:
+		switch(gn.getType()) {
+			case LOGIN_SUCCES:
 				/*
 				EventQueueClient css = EventQueueClient.Instancia();
 				css.setId(gn.getDato());
@@ -92,7 +92,7 @@ public class LoginController  {
 					}
 				}).start(); 
 				break;
-			case ERROR:
+			case LOGIN_ERROR:
 				panel.getLblRespuesta().setText("Error en los datos");
 				break;
 			default :
@@ -132,4 +132,5 @@ public class LoginController  {
 			}
 		}).start(); 
 	}
+
 }

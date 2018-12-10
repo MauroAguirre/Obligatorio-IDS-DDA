@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import uy.edu.cei.Obligatorio.Common.Observer;
 import uy.edu.cei.Obligatorio.Common.Controller.UsuarioController;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
-import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationAction;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotificationType;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 import uy.edu.cei.Obligatorio.Server.Impl.Service.UsuarioServiceMemoryImpl;
@@ -18,7 +17,7 @@ import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 public class UsuarioControllerImpl extends UnicastRemoteObject implements UsuarioController {
 
 	private static final long serialVersionUID = 1L;
-	public UsuarioServiceMemoryImpl usuarioServiceMemoryImpl;
+	private UsuarioServiceMemoryImpl usuarioServiceMemoryImpl;
 	private List<Observer> observers;
 	private UsuarioService us;
 
@@ -32,10 +31,10 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
 		GameNotification gameNotification;
 		if(usuarioModel != null && usuarioModel.GetContra().equals(contra)) {
-			gameNotification = new GameNotification(GameNotificationType.LOGIN,GameNotificationAction.LOG,id,usuarioModel.getId());
+			gameNotification = new GameNotification(GameNotificationType.LOGIN_SUCCES,usuarioModel.getId());
 		}
 		else
-			gameNotification = new GameNotification(GameNotificationType.LOGIN,GameNotificationAction.ERROR,id);
+			gameNotification = new GameNotification(GameNotificationType.LOGIN_ERROR);
 		for(int i=0;i<observers.size();i++) {
 			if(observers.get(i).getId()==id) {
 				observers.get(i).update(gameNotification);
@@ -52,4 +51,10 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
 		return us.ListaUsuarios();
 	}
+	
+	@Override
+	public UsuarioModel buscarUsuarioPorId(Long id) throws RemoteException {
+		return us.buscarPorId(id);
+	}
+
 }

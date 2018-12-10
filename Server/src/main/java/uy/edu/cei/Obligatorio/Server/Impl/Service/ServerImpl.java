@@ -30,9 +30,9 @@ public class ServerImpl implements Server, Observable {
 	public ServerImpl() throws RemoteException {
 		ultimaId=0;
 		observers = new LinkedList<>();
-		usuarioControllerImpl = new UsuarioControllerImpl(observers);
-		realControllerImpl = new RealControllerImpl(observers);
 		salasReales = new LinkedList<>();
+		usuarioControllerImpl = new UsuarioControllerImpl(observers);
+		realControllerImpl = new RealControllerImpl(observers,salasReales);
 	}
 	
 	public UsuarioControllerImpl getUsuarioControllerImpl() throws RemoteException {

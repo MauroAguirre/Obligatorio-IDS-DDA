@@ -45,7 +45,6 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 			em.persist(usu);
 		}
 		em.getTransaction().commit();
-		int dsadsad = 43243;
 		return usu; //aca iba return usuQuery;
 	}
 
@@ -55,6 +54,18 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 		//em.ge
 		em.getTransaction().commit();
 		return null;
+	}
+
+	@Override
+	public UsuarioModel buscarPorId(long id) throws RemoteException {
+		EntityManager em = JPAService.getInstance().getEM();
+		UsuarioModel usuario;
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.buscarPorId",UsuarioModel.class);
+		query.setParameter("id",id);
+		usuario = query.getSingleResult();
+		em.getTransaction().commit();
+		return usuario;
 	}
 
 }

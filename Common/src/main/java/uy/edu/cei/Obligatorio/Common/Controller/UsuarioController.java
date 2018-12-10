@@ -10,4 +10,5 @@ public interface UsuarioController extends Remote {
 	public void verificarUsuario(String usuario, String contra,long id) throws RemoteException;
 	public UsuarioModel agregarUsuario(String usuario,String contra) throws RemoteException;
 	public List<UsuarioModel> ListaUsuarios() throws RemoteException;
+	public UsuarioModel buscarUsuarioPorId(Long id) throws RemoteException;
 }

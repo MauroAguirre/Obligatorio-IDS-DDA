@@ -35,10 +35,6 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 		users.put("kakaroto", new UsuarioModel("kakaroto", "123"));
 	}
 
-	@Override
-	public UsuarioModel buscarUsuarioPorNombre(String username) {
-		return this.users.get(username);
-	}
 
 
 	@Override
@@ -52,6 +48,26 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+	@Override
+	public UsuarioModel buscarUsuarioPorNombre(String nombre) throws RemoteException {
+		return this.users.get(nombre);
+	}
+
+
+
+	@Override
+	public UsuarioModel buscarPorId(long id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
 
 
 }

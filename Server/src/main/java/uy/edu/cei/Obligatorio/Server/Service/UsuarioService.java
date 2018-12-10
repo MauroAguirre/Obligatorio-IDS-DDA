@@ -27,10 +27,8 @@ public interface UsuarioService extends Remote {
 		}
 		return usuarioService;
 	}
-
 	public List<UsuarioModel> ListaUsuarios() throws RemoteException;
-
 	public UsuarioModel buscarUsuarioPorNombre(String nombre) throws RemoteException;
-
+	public UsuarioModel buscarPorId(long id) throws RemoteException;
 	public UsuarioModel registrar(String nombre, String contra) throws RemoteException;
 }

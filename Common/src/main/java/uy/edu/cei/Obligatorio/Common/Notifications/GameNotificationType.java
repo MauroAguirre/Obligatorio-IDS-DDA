@@ -1,9 +1,12 @@
 package uy.edu.cei.Obligatorio.Common.Notifications;
 
 public enum GameNotificationType {
-	LOGIN("login"),
+	LOGIN_SUCCES("login_succes"),
+	LOGIN_ERROR("login_error"),
 	MAIN("main"),
-	REGISTRY("registry");
+	REGISTRY("registry"),
+	REAL_NAMETAKEN("real_nameTaken"),
+	REAL_CREATED("real_created");
 	
 	private String value;
 	

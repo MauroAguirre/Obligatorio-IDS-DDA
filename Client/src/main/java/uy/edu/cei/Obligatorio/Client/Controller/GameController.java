@@ -1,8 +1,9 @@
 package uy.edu.cei.Obligatorio.Client.Controller;
 
 import uy.edu.cei.Obligatorio.Client.ui.Panel.Game.GamePanel;
+import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 
-public class GameController {
+public class GameController implements MasterController{
 	private static GameController instancia;
 	private static GamePanel panel;
 	
@@ -16,5 +17,11 @@ public class GameController {
 	
 	public GamePanel darPanel() {
 		return panel;
+	}
+
+	@Override
+	public void respuesta(GameNotification gn) {
+		// TODO Auto-generated method stub
+		
 	}
 }
