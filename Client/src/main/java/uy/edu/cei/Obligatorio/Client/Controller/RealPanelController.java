@@ -1,12 +1,17 @@
 package uy.edu.cei.Obligatorio.Client.Controller;
 
 import java.rmi.RemoteException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JList;
 
 import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.RealPanel;
 import uy.edu.cei.Obligatorio.Common.Controller.RealController;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
+import uy.edu.cei.Obligatorio.Domain.RealModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 public class RealPanelController implements MasterController {
@@ -24,7 +29,17 @@ public class RealPanelController implements MasterController {
 	public RealPanel darPanel() {
 		return panel;
 	}
-	
+	public void mostrarSalas() throws RemoteException {
+		EventQueueClient eqc = EventQueueClient.Instancia();
+		List<RealModel> lista = eqc.GetServer().getRealControllerImpl().darSalas();
+		String[] contenido = new String[lista.size()];
+		for(int i=0;i<lista.size();i++) {
+			contenido[i] = lista.get(i).getNombre();
+		}
+		JList panelNuevo = new JList(contenido);
+		panelNuevo.setBounds(10, 11, 146, 250);
+		panel.getPanelLista().add(panelNuevo);
+	}
 	public void crearSala() {
 		try {
 			EventQueueClient eqc = EventQueueClient.Instancia();

@@ -2,6 +2,8 @@ package uy.edu.cei.Obligatorio.Server.Impl.Model;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import uy.edu.cei.Obligatorio.Common.Observer;
@@ -50,6 +52,11 @@ public class RealControllerImpl extends UnicastRemoteObject implements RealContr
 	public void entrarSala(String nombre,UsuarioModel player) throws RemoteException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<RealModel> darSalas() throws RemoteException {
+		return this.salasReales;
 	}
 
 }

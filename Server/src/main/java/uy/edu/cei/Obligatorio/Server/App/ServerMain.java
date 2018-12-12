@@ -4,16 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
 import uy.edu.cei.Obligatorio.Common.Server.Server;
-import uy.edu.cei.Obligatorio.Domain.RegistroModel;
-import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 import uy.edu.cei.Obligatorio.Server.Impl.Service.ServerImpl;
 import uy.edu.cei.Obligatorio.Server.Service.JPAService;
 

@@ -35,6 +35,8 @@ public class RealPanel extends GeneralaPanel {
 	private JTextField txtNombre;
 	private JTextField txtApuesta;
 	private JLabel lblRespuesta;
+	private JList lista;
+	private JPanel panelLista;
 	
 	public JTextField getTxtNombre() {
 		return this.txtNombre;
@@ -45,7 +47,12 @@ public class RealPanel extends GeneralaPanel {
 	public JLabel getLblRespuesta() {
 		return this.lblRespuesta;
 	}
-	
+	public JPanel getPanelLista() {
+		return this.panelLista;
+	}
+	public void setPanelLista(JPanel panelLista) {
+		this.panelLista = panelLista;
+	}
 	public RealPanel() {
 		
 		this.modificable=false;
@@ -54,16 +61,10 @@ public class RealPanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
-		String contenido[]= { "dasd","dsadas","dsadasd"};
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(464, 99, 166, 272);
-		add(panel);
-		panel.setLayout(null);
-		
-		JList dsd = new JList(contenido);
-		dsd.setBounds(10, 11, 146, 250);
-		panel.add(dsd);
+		JPanel panelLista = new JPanel();
+		panelLista.setBounds(464, 99, 166, 272);
+		add(panelLista);
+		panelLista.setLayout(null);
 		
 		JLabel lblSalasReales = new JLabel("Salas Reales");
 		lblSalasReales.setFont(new Font("Forte", Font.PLAIN, 20));
@@ -98,6 +99,10 @@ public class RealPanel extends GeneralaPanel {
 		add(btnCrear);
 		
 		JButton btnUnirse = new JButton("Unirse");
+		btnUnirse.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent arg0) {
+			}
+		});
 		btnUnirse.setFont(new Font("Forte", Font.PLAIN, 20));
 		btnUnirse.setBounds(250, 417, 91, 23);
 		add(btnUnirse);

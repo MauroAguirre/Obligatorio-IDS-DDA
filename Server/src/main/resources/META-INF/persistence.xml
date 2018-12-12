@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="jpaDS">
+	<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 		<class>uy.edu.cei.Obligatorio.Domain.UsuarioModel</class>
 		<class>uy.edu.cei.Obligatorio.Domain.RegistroModel</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
