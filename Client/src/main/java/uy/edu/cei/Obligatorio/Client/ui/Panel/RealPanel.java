@@ -1,6 +1,7 @@
 package uy.edu.cei.Obligatorio.Client.ui.Panel;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class RealPanel extends GeneralaPanel {
 	private boolean modificable;
 	private JTextField txtNombre;
 	private JTextField txtApuesta;
+	private JLabel lblApuesta;
 	private JLabel lblRespuesta;
-	private JList lista;
-	private JPanel panelLista;
+	private JList<String> lista;
 	
 	public JTextField getTxtNombre() {
 		return this.txtNombre;
@@ -47,39 +48,60 @@ public class RealPanel extends GeneralaPanel {
 	public JLabel getLblRespuesta() {
 		return this.lblRespuesta;
 	}
-	public JPanel getPanelLista() {
-		return this.panelLista;
+	public JList<String> getLista(){
+		return this.lista;
 	}
-	public void setPanelLista(JPanel panelLista) {
-		this.panelLista = panelLista;
-	}
-	public RealPanel() {
+	public RealPanel(DefaultListModel modelo) {
 		
+		/*
+		RealPanelController rpc = RealPanelController.getInstancia();
+		try {
+			rpc.mostrarSalas();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
+
 		this.modificable=false;
 		setLayout(null);
 		this.setSize(640, 480);
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
-		JPanel panelLista = new JPanel();
-		panelLista.setBounds(464, 99, 166, 272);
-		add(panelLista);
-		panelLista.setLayout(null);
+        //create the list
+        lista = new JList<>(modelo);
+        lista.setBounds(430, 128, 200, 278);
+        lista.setVisibleRowCount(1);
+        add(lista);
+        
+
 		
 		JLabel lblSalasReales = new JLabel("Salas Reales");
 		lblSalasReales.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSalasReales.setBounds(229, 60, 130, 23);
 		add(lblSalasReales);
 		
-		lblRespuesta = new JLabel("Apuesta");
-		lblRespuesta.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblRespuesta.setBounds(50, 242, 84, 23);
-		add(lblRespuesta);
+		lblApuesta = new JLabel("Apuesta");
+		lblApuesta.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblApuesta.setBounds(50, 242, 84, 23);
+		add(lblApuesta);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblNombre.setBounds(50, 180, 84, 23);
 		add(lblNombre);
+		
+		JButton btnMostrarSalas = new JButton("Mostrar Salas");
+		btnMostrarSalas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				RealPanelController rl = RealPanelController.getInstancia();
+				rl.mostrarSalas();
+			}
+		});
+		btnMostrarSalas.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnMostrarSalas.setBounds(430, 63, 173, 23);
+		add(btnMostrarSalas);
 		
 		JButton btnNewButton = new JButton("Salir");
 		btnNewButton.setFont(new Font("Forte", Font.PLAIN, 20));
@@ -101,6 +123,8 @@ public class RealPanel extends GeneralaPanel {
 		JButton btnUnirse = new JButton("Unirse");
 		btnUnirse.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
+				RealPanelController rl = RealPanelController.getInstancia();
+				rl.buscarSalaPorApuesta(300);
 			}
 		});
 		btnUnirse.setFont(new Font("Forte", Font.PLAIN, 20));
@@ -119,9 +143,9 @@ public class RealPanel extends GeneralaPanel {
 		txtApuesta.setBounds(161, 242, 130, 20);
 		add(txtApuesta);
 		
-		JLabel lblRespuesta = new JLabel("");
+		lblRespuesta = new JLabel("");
 		lblRespuesta.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblRespuesta.setBounds(78, 300, 173, 23);
+		lblRespuesta.setBounds(50, 302, 241, 23);
 		add(lblRespuesta);
 		
 		JLabel img = new JLabel();
@@ -130,5 +154,6 @@ public class RealPanel extends GeneralaPanel {
 		add(img);
 		img.setIcon(image);
 		img.setVisible(true);
+		
 	}
 }

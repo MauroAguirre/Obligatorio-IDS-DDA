@@ -13,4 +13,5 @@ public interface RealController extends Remote {
 	public List<RealModel> darSalas() throws RemoteException;
 	public void crearSala(String nombre,UsuarioModel player, int apuesta) throws RemoteException;
 	public void entrarSala(String nombre,UsuarioModel player) throws RemoteException;
+	public void entrarSalaPorApuesta(UsuarioModel player,int apuesta) throws RemoteException;
 }

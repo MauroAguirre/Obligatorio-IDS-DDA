@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
@@ -21,7 +22,18 @@ public class RealPanelController implements MasterController {
 	public static RealPanelController getInstancia() {
 		if(instancia == null) {
 			instancia = new RealPanelController();
-			panel = new RealPanel();
+			
+			try {
+				EventQueueClient eqc = EventQueueClient.Instancia();
+				List<RealModel> salas = eqc.GetServer().getRealControllerImpl().darSalas();
+				DefaultListModel modelo = new DefaultListModel();
+				for(int i=0;i<salas.size();i++) {
+					modelo.addElement(salas.get(i).getNombre());
+				}
+				panel = new RealPanel(modelo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		return instancia;
 	}
@@ -29,17 +41,34 @@ public class RealPanelController implements MasterController {
 	public RealPanel darPanel() {
 		return panel;
 	}
-	public void mostrarSalas() throws RemoteException {
-		EventQueueClient eqc = EventQueueClient.Instancia();
-		List<RealModel> lista = eqc.GetServer().getRealControllerImpl().darSalas();
-		String[] contenido = new String[lista.size()];
-		for(int i=0;i<lista.size();i++) {
-			contenido[i] = lista.get(i).getNombre();
+	
+	public void entrarSala() {
+		try {
+			String nombreSala = panel.getLista().getSelectedValue();
+			EventQueueClient eqc = EventQueueClient.Instancia();
+			UsuarioModel usuario = eqc.GetServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
+			RealController rci = eqc.GetServer().getRealControllerImpl();
+			rci.entrarSala(nombreSala, usuario);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		JList panelNuevo = new JList(contenido);
-		panelNuevo.setBounds(10, 11, 146, 250);
-		panel.getPanelLista().add(panelNuevo);
 	}
+	
+	public void mostrarSalas() {
+		try {
+			EventQueueClient eqc = EventQueueClient.Instancia();
+			List<RealModel> salas = eqc.GetServer().getRealControllerImpl().darSalas();
+			DefaultListModel modelo = new DefaultListModel();
+			for(int i=0;i<salas.size();i++) {
+				modelo.addElement(salas.get(i).getNombre());
+			}
+			panel.getLista().setModel(modelo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void crearSala() {
 		try {
 			EventQueueClient eqc = EventQueueClient.Instancia();
@@ -52,17 +81,39 @@ public class RealPanelController implements MasterController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void buscarSalaPorApuesta(int apuesta) {
+		try {
+			EventQueueClient eqc = EventQueueClient.Instancia();
+			UsuarioModel usuario = eqc.GetServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
+			//falta arregla que pasa si el panel no se ingresa un numero
+			RealController rci = eqc.GetServer().getRealControllerImpl();
+			rci.entrarSalaPorApuesta(usuario, apuesta);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void respuesta(GameNotification gn) {
+		MainWindow main = MainWindow.getInstancia();
 		switch(gn.getType()) {
 			case REAL_NAMETAKEN:
 				panel.getLblRespuesta().setText("nombre de sala ya utilizado");
 				panel.repaint();
 				break;
 			case REAL_CREATED:
-				MainWindow main = MainWindow.getInstancia();
 				main.cambiarVentana("waiting");
+				break;
+			case REAL_MATCHNOTFOUND:
+				panel.getLblRespuesta().setText("no se encontro una sala");
+				panel.repaint();
+				break;
+			case REAL_MATCHSTART:
+				main.cambiarVentana("game");
 				break;
 			default:
 		}
+		System.out.println(gn.getType());
 	}
 }

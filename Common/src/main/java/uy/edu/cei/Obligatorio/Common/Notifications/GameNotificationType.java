@@ -6,7 +6,9 @@ public enum GameNotificationType {
 	MAIN("main"),
 	REGISTRY("registry"),
 	REAL_NAMETAKEN("real_nameTaken"),
-	REAL_CREATED("real_created");
+	REAL_CREATED("real_created"),
+	REAL_MATCHNOTFOUND("real_matchNotFound"),
+	REAL_MATCHSTART("real_matchStart");
 	
 	private String value;
 	

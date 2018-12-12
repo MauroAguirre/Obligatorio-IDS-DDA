@@ -44,19 +44,60 @@ public class RealControllerImpl extends UnicastRemoteObject implements RealContr
 				break;
 			}
 		}
-		
-
 	}
 
 	@Override
 	public void entrarSala(String nombre,UsuarioModel player) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		boolean encontrado = false;
+		for(int l=0;l<observers.size();l++) {
+			if(observers.get(l).getId()==player.getId()) {
+				for(int i=0;i<salasReales.size();i++) {
+					if(salasReales.get(i).disponible() && salasReales.get(i).getNombre().equals(nombre)){
+						encontrado = true;
+						salasReales.get(i).setPlayer2(player);
+						for(int y=0;y<observers.size();y++) {
+							if(observers.get(y).getId()==salasReales.get(i).getPlayer1().getId()) {
+								observers.get(y).update(new GameNotification(GameNotificationType.REAL_MATCHSTART));
+								observers.get(l).update(new GameNotification(GameNotificationType.REAL_MATCHSTART));
+								break;
+							}
+						}
+						break;
+					}
+				}
+				if(!encontrado)
+					observers.get(l).update(new GameNotification(GameNotificationType.REAL_MATCHNOTFOUND));
+				break;
+			}
+		}
 	}
 
 	@Override
 	public List<RealModel> darSalas() throws RemoteException {
 		return this.salasReales;
 	}
-
+	public void entrarSalaPorApuesta(UsuarioModel player,int apuesta) throws RemoteException{
+		boolean encontrado = false;
+		for(int l=0;l<observers.size();l++) {
+			if(observers.get(l).getId()==player.getId()) {
+				for(int i=0;i<salasReales.size();i++) {
+					if(salasReales.get(i).disponible() && salasReales.get(i).getApuesta()==apuesta){
+						encontrado = true;
+						salasReales.get(i).setPlayer2(player);
+						for(int y=0;y<observers.size();y++) {
+							if(observers.get(y).getId()==salasReales.get(i).getPlayer1().getId()) {
+								observers.get(y).update(new GameNotification(GameNotificationType.REAL_MATCHSTART));
+								observers.get(l).update(new GameNotification(GameNotificationType.REAL_MATCHSTART));
+								break;
+							}
+						}
+						break;
+					}
+				}
+				if(!encontrado)
+					observers.get(l).update(new GameNotification(GameNotificationType.REAL_MATCHNOTFOUND));
+				break;
+			}
+		}
+	}
 }

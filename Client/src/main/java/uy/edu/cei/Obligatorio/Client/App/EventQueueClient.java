@@ -91,6 +91,8 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 				break;
 			case REAL_NAMETAKEN:
 			case REAL_CREATED:
+			case REAL_MATCHNOTFOUND:
+			case REAL_MATCHSTART:
 				RealPanelController realController = RealPanelController.getInstancia();
 				realController.respuesta(notification);
 				break;
@@ -98,7 +100,7 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 				break;
 			default:
 				break;
-		}
+		}	
 	}
 	
 }

@@ -40,7 +40,13 @@ public class RealModel implements Remote, Serializable{
 	
 	public RealModel(String nombre, UsuarioModel player1,int apuesta) {
 		this.player1 = player1;
+		this.player2=null;
 		this.apuesta = apuesta;
 		this.nombre = nombre;
+	}
+	public boolean disponible() {
+		if(player1!=null && player2!=null)
+			return true;
+		return false;
 	}
 }

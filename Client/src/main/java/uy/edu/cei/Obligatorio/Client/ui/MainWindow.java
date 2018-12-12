@@ -15,6 +15,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
+import uy.edu.cei.Obligatorio.Client.Controller.GameController;
 import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
 import uy.edu.cei.Obligatorio.Client.Controller.MainController;
 import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
@@ -74,6 +75,12 @@ public class MainWindow{
 				RealPanelController realController = RealPanelController.getInstancia();
 				frame.setContentPane(realController.darPanel());
 				frame.setVisible(true);
+				break;
+			case "game":
+				GameController gameController = GameController.getInstancia();
+				frame.setContentPane(gameController.darPanel());
+				frame.setVisible(true);
+				break;
 		}
 	}
 	
