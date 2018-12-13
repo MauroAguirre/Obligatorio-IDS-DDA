@@ -51,6 +51,7 @@ public class MainWindow{
 				MainController mainController = MainController.getInstancia();
 				frame.setContentPane(mainController.darPanel());
 				frame.setVisible(true);
+				mainController.intro();
 				break;
 			case "login":
 				LoginController loginController = LoginController.getInstancia();

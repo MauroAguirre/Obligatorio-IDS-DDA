@@ -72,8 +72,9 @@ public class LoginController implements MasterController {
 								panel.getBtnEntrar().repaint();
 								panel.getBtnSalir().setBounds(343, 357+(contador*2), 89, 23);
 								panel.getBtnSalir().repaint();
-								panel.getLblRespuesta().setBounds(211, 101+(contador*2), 175, 23);
+								panel.getLblRespuesta().setBounds(211, 301+(contador*2), 175, 23);
 								panel.getLblRespuesta().repaint();
+								//lblRespuesta.setBounds(211, 301, 175, 23);
 								contador++;
 								Thread.sleep(25);
 							} catch (InterruptedException e) {

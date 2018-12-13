@@ -18,6 +18,36 @@ public class MainPanel extends GeneralaPanel {
 	private static final long serialVersionUID = 1L;
 	private boolean modificable;
 	private JLabel lblMenuPrincipal;
+	private JLabel lblSalaReal;
+	private JLabel lblSalir;
+	private JLabel lblRankings;
+	private JLabel lblUsuarios;
+	private JLabel lblSalasVirtuales;
+	
+	public boolean getModificable() {
+		return this.modificable;
+	}
+	public JLabel getLblMenuPrincipal() {
+		return this.lblMenuPrincipal;
+	}
+	public JLabel getLblSalaReal() {
+		return this.lblSalaReal;
+	}
+	public JLabel getLblSalir() {
+		return this.lblSalir;
+	}
+	public JLabel getLblRankings() {
+		return this.lblRankings;
+	}
+	public JLabel getLblUsuarios() {
+		return this.lblUsuarios;
+	}
+	public JLabel getLblSalasVirtuales() {
+		return this.lblSalasVirtuales;
+	}
+	public void setModificable(boolean bol) {
+		this.modificable = bol;
+	}
 	
 	public MainPanel() {
 		this.modificable=false;
@@ -26,7 +56,7 @@ public class MainPanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
-		JLabel lblSalaReal = new JLabel("Salas Reales");
+		lblSalaReal = new JLabel("Salas Reales");
 		lblSalaReal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -38,17 +68,17 @@ public class MainPanel extends GeneralaPanel {
 		lblSalaReal.setBounds(231, 179, 135, 28);
 		add(lblSalaReal);
 		
-		JLabel lblSalir = new JLabel("Salir");
+		lblSalir = new JLabel("Salir");
 		lblSalir.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSalir.setBounds(269, 360, 47, 20);
 		add(lblSalir);
 		
-		JLabel lblRankings = new JLabel("Rankings");
+		lblRankings = new JLabel("Rankings");
 		lblRankings.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblRankings.setBounds(255, 303, 86, 20);
 		add(lblRankings);
 		
-		JLabel lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios = new JLabel("Usuarios");
 		lblUsuarios.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblUsuarios.setBounds(255, 123, 86, 20);
 		add(lblUsuarios);
@@ -58,7 +88,7 @@ public class MainPanel extends GeneralaPanel {
 		lblMenuPrincipal.setBounds(231, 63, 146, 20);
 		add(lblMenuPrincipal);
 		
-		JLabel lblSalasVirtuales = new JLabel("Salas Virtuales");
+		lblSalasVirtuales = new JLabel("Salas Virtuales");
 		lblSalasVirtuales.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSalasVirtuales.setBounds(231, 240, 135, 28);
 		add(lblSalasVirtuales);

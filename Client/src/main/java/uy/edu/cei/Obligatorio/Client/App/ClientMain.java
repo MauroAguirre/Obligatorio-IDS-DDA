@@ -17,6 +17,7 @@ public class ClientMain {
 				try {	
 					MainWindow main = MainWindow.getInstancia();
 					main.cambiarVentana("login");
+					//main.cambiarVentana("main");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
