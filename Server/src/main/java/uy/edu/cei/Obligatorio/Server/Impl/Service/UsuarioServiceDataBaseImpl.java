@@ -19,7 +19,10 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 		}
 		return instancia;
 	}
-
+	
+	public UsuarioServiceDataBaseImpl() {
+		
+	}
 	public UsuarioModel buscarUsuarioPorNombre(String nombre) throws RemoteException {
 		EntityManager em = JPAService.getInstance().getEM();
 		UsuarioModel usu = null;
@@ -33,7 +36,7 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 		return usu;
 	}
 
-	public UsuarioModel registrar(String nombre, String contra) throws RemoteException {
+	public UsuarioModel registrar(String nombre, String contra,int avatar) throws RemoteException {
 		EntityManager em = JPAService.getInstance().getEM();
 		UsuarioModel usu = null; // te cree la variable para que la puedas usar en la linea 44
 		em.getTransaction().begin();
@@ -41,14 +44,14 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 		query.setParameter("usuario",nombre);
 		List<UsuarioModel> results = query.getResultList();
 		if(results.isEmpty()) {
-			usu = new UsuarioModel(nombre,contra);
+			usu = new UsuarioModel(nombre,contra,avatar);
 			em.persist(usu);
 		}
 		em.getTransaction().commit();
 		return usu; //aca iba return usuQuery;
 	}
 
-	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
+	public List<UsuarioModel> listaUsuarios() throws RemoteException {
 		EntityManager em = JPAService.getInstance().getEM();
 		em.getTransaction().begin();
 		//em.ge
@@ -66,6 +69,12 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 		usuario = query.getSingleResult();
 		em.getTransaction().commit();
 		return usuario;
+	}
+
+	@Override
+	public UsuarioModel modificar(String nombre, String contra, int avatar) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

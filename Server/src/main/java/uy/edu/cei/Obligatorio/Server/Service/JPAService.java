@@ -23,14 +23,10 @@ public class JPAService {
 		this.entityManager = emf.createEntityManager();
 		
 		entityManager.getTransaction().begin();
-		UsuarioModel u2 = new UsuarioModel("matias","123");
-		UsuarioModel u = new UsuarioModel("mauro","123");
-		RegistroModel r1 = new RegistroModel("kakaroto");
-		RegistroModel r2 = new RegistroModel("ponele sabor");
+		UsuarioModel u2 = new UsuarioModel("matias","123",3);
+		UsuarioModel u = new UsuarioModel("mauro","123",2);
 		entityManager.persist(u);
 		entityManager.persist(u2);
-		u.getRegistros().add(r1);
-		u.getRegistros().add(r2);
 		entityManager.getTransaction().commit();
 	}
 

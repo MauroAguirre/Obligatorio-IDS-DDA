@@ -35,19 +35,31 @@ public class UsuarioModel implements Remote, Serializable {
 	@Column(unique = true)
 	private String usuario;
 	private String contra;
+	private int avatar;
+	private int victorias;
+	private int derrotas;
+	private int puntos;
+	private int reales;
+	private int virtuales;
+	/*
 	@OneToMany(
 			cascade = CascadeType.PERSIST,
 			fetch = FetchType.LAZY
 	)
 	private List<RegistroModel> registros;
-	
+	*/
 	public UsuarioModel() {
 		
 	}
-	public UsuarioModel(String usuario, String contra) {
+	public UsuarioModel(String usuario, String contra,int avatar) {
 		this.usuario = usuario;
 		this.contra = contra;
-		this.registros = new ArrayList<>();
+		this.avatar = avatar;
+		this.victorias=0;
+		this.derrotas=0;
+		this.puntos=0;
+		this.reales=1000;
+		this.virtuales=1000;
 	}
 	
 	public Long getId() {
@@ -68,8 +80,5 @@ public class UsuarioModel implements Remote, Serializable {
 
 	public String GetContra() {
 		return this.contra;
-	}
-	public List<RegistroModel> getRegistros(){
-		return this.registros;
 	}
 }

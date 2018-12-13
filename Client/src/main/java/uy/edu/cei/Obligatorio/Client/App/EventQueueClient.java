@@ -47,7 +47,7 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 			this.queue = new LinkedList<>();
 			Registry registry = LocateRegistry.getRegistry(1099);
 			server= (Server) registry.lookup("server");
-			server.TestConnection();
+			server.testConnection();
 			id = server.subscribe(this);
 			this.initializeThread();
 			System.out.println(id);
@@ -56,7 +56,7 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 			e.printStackTrace();
 		}
 	}
-	public Server GetServer() {
+	public Server getServer() {
 		return server;
 	}
 

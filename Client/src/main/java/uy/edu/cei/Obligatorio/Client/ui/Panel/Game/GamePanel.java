@@ -20,9 +20,24 @@ import javax.swing.Box;
 
 public class GamePanel extends GeneralaPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel lblJugadas;
+	private JLabel lblGeneralaDoble;
+	private JLabel lblGenerala;
+	private JLabel lblPker;
+	private JLabel lblFull;
+	private JLabel lblEscalera;
+	private JLabel lblSumaDeSeis;
+	private JLabel lblSumaDeCincos;
+	private JLabel lblSumaDeCuatros;
+	private JLabel lblSumaDeTres;
+	private JLabel lblSumaDeDos;
+	private JLabel lblSumaDeUnos;
+	private JLabel lblPuntaje1;
+	private JLabel lblPuntaje2;
+	private JLabel lblTiempo;
+	private JLabel lblJugando;
+	
 	public GamePanel() {
 		
 		setLayout(null);
@@ -30,71 +45,71 @@ public class GamePanel extends GeneralaPanel {
 		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
 		ImageIcon image = new ImageIcon(url);
 		
-		JLabel lblJugadas = new JLabel("Jugadas");
+		lblJugadas = new JLabel("Jugadas");
 		lblJugadas.setForeground(Color.RED);
 		lblJugadas.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblJugadas.setBounds(473, 31, 157, 20);
 		add(lblJugadas);
 		
-		JLabel lblGeneralaDoble = new JLabel("Generala doble");
+		lblGeneralaDoble = new JLabel("Generala doble");
 		lblGeneralaDoble.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblGeneralaDoble.setBounds(473, 360, 157, 20);
 		add(lblGeneralaDoble);
 		
-		JLabel lblGenerala = new JLabel("Generala");
+		lblGenerala = new JLabel("Generala");
 		lblGenerala.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblGenerala.setBounds(473, 328, 157, 20);
 		add(lblGenerala);
 		
-		JLabel lblPker = new JLabel("Póker");
+		lblPker = new JLabel("Póker");
 		lblPker.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblPker.setBounds(473, 300, 157, 20);
 		add(lblPker);
 		
-		JLabel lblFull = new JLabel("Full");
+		lblFull = new JLabel("Full");
 		lblFull.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblFull.setBounds(473, 274, 157, 20);
 		add(lblFull);
 		
-		JLabel lblEscalera = new JLabel("Escalera");
+		lblEscalera = new JLabel("Escalera");
 		lblEscalera.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblEscalera.setBounds(473, 243, 157, 20);
 		add(lblEscalera);
 		
-		JLabel lblSumaDeSeis = new JLabel("Suma de Seis");
+		lblSumaDeSeis = new JLabel("Suma de Seis");
 		lblSumaDeSeis.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblSumaDeSeis.setBounds(473, 212, 157, 20);
 		add(lblSumaDeSeis);
 		
-		JLabel lblSumaDeCincos = new JLabel("Suma de Cincos");
+		lblSumaDeCincos = new JLabel("Suma de Cincos");
 		lblSumaDeCincos.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblSumaDeCincos.setBounds(473, 185, 157, 20);
 		add(lblSumaDeCincos);
 		
-		JLabel lblSumaDeCuatros = new JLabel("Suma de Cuatros");
+		lblSumaDeCuatros = new JLabel("Suma de Cuatros");
 		lblSumaDeCuatros.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSumaDeCuatros.setBounds(473, 155, 157, 20);
 		add(lblSumaDeCuatros);
 		
-		JLabel lblSumaDeDos = new JLabel("Suma de Dos");
+		lblSumaDeDos = new JLabel("Suma de Dos");
 		lblSumaDeDos.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSumaDeDos.setBounds(473, 93, 157, 20);
 		add(lblSumaDeDos);
 		
-		JLabel lblJugada = new JLabel("Suma de Unos");
-		lblJugada.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblJugada.setBounds(473, 62, 157, 20);
-		add(lblJugada);
+		lblSumaDeUnos = new JLabel("Suma de Unos");
+		lblSumaDeUnos.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblSumaDeUnos.setBounds(473, 62, 157, 20);
+		add(lblSumaDeUnos);
 		
-		JLabel label = new JLabel("Puntaje");
-		label.setFont(new Font("Forte", Font.PLAIN, 20));
-		label.setBounds(397, 185, 81, 20);
-		add(label);
+		lblPuntaje1 = new JLabel("Puntaje1");
+		lblPuntaje1.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblPuntaje1.setBounds(397, 185, 81, 20);
+		add(lblPuntaje1);
 		
-		JLabel lblPuntaje = new JLabel("Puntaje");
-		lblPuntaje.setFont(new Font("Forte", Font.PLAIN, 20));
-		lblPuntaje.setBounds(10, 270, 98, 20);
-		add(lblPuntaje);
+		lblPuntaje2 = new JLabel("Puntaje2");
+		lblPuntaje2.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblPuntaje2.setBounds(10, 270, 98, 20);
+		add(lblPuntaje2);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 320, 81, 149);
@@ -122,33 +137,33 @@ public class GamePanel extends GeneralaPanel {
 		btnLockearJugada.setBounds(463, 412, 167, 23);
 		add(btnLockearJugada);
 		
-		DicePanel dice1 = new DicePanel(1,"red");
+		DicePanel dice1 = new DicePanel(1);
 		dice1.setBounds(130, 130, 40, 40);
 		add(dice1);
-		DicePanel dice2 = new DicePanel(2,"red");
+		DicePanel dice2 = new DicePanel(2);
 		dice2.setBounds(180, 180, 40, 40);
 		add(dice2);
-		DicePanel dice3 = new DicePanel(3,"red");
+		DicePanel dice3 = new DicePanel(3);
 		dice3.setBounds(230, 230, 40, 40);
 		add(dice3);
-		DicePanel dice4 = new DicePanel(4,"red");
+		DicePanel dice4 = new DicePanel(4);
 		dice4.setBounds(280, 280, 40, 40);
 		add(dice4);
-		DicePanel dice5 = new DicePanel(5,"red");
+		DicePanel dice5 = new DicePanel(5);
 		dice5.setBounds(330, 330, 40, 40);
 		add(dice5);
 		
-		JLabel lblTiempo = new JLabel("Tiempo");
+		lblTiempo = new JLabel("Tiempo");
 		lblTiempo.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblTiempo.setBounds(292, 31, 74, 20);
 		add(lblTiempo);
 		
-		JLabel lblJugando = new JLabel("Jugando");
+		lblJugando = new JLabel("Jugando");
 		lblJugando.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblJugando.setBounds(10, 31, 122, 20);
 		add(lblJugando);
 		
-		JLabel lblSumaDeTres = new JLabel("Suma de Tres");
+		lblSumaDeTres = new JLabel("Suma de Tres");
 		lblSumaDeTres.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSumaDeTres.setBounds(473, 124, 157, 20);
 		add(lblSumaDeTres);

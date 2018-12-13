@@ -11,28 +11,42 @@ import javax.persistence.Persistence;
 import uy.edu.cei.Obligatorio.Domain.RealModel;
 import uy.edu.cei.Obligatorio.Domain.RegistroModel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
-import uy.edu.cei.Obligatorio.Server.Impl.Model.RealControllerImpl;
-import uy.edu.cei.Obligatorio.Server.Impl.Model.UsuarioControllerImpl;
+import uy.edu.cei.Obligatorio.Domain.VirtualModel;
+import uy.edu.cei.Obligatorio.Server.Impl.Controller.GameControllerImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Controller.RealControllerImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Controller.RegistroControllerImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Controller.UsuarioControllerImpl;
+import uy.edu.cei.Obligatorio.Server.Impl.Controller.VirtualControllerImpl;
 import uy.edu.cei.Obligatorio.Server.Service.JPAService;
 import uy.edu.cei.Obligatorio.Common.Observable;
 import uy.edu.cei.Obligatorio.Common.Observer;
+import uy.edu.cei.Obligatorio.Common.Controller.GameController;
 import uy.edu.cei.Obligatorio.Common.Controller.RealController;
+import uy.edu.cei.Obligatorio.Common.Controller.RegistroController;
+import uy.edu.cei.Obligatorio.Common.Controller.VirtualController;
 import uy.edu.cei.Obligatorio.Common.Server.Server;
 
 public class ServerImpl implements Server, Observable {
 	
 	private UsuarioControllerImpl usuarioControllerImpl;
 	private RealControllerImpl realControllerImpl;
+	private VirtualControllerImpl virtualControllerImpl;
+	private GameControllerImpl gameControllerImpl;
+	private RegistroControllerImpl registroControllerImpl;
 	private List<Observer> observers;
 	private List<RealModel> salasReales;
+	private List<VirtualModel> salasVirtuales;
 	private long ultimaId;
 	
 	public ServerImpl() throws RemoteException {
 		ultimaId=0;
 		observers = new LinkedList<>();
 		salasReales = new LinkedList<>();
+		salasVirtuales = new LinkedList<>();
 		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 		realControllerImpl = new RealControllerImpl(observers,salasReales);
+		virtualControllerImpl = new VirtualControllerImpl(observers,salasVirtuales);
+		gameControllerImpl = new GameControllerImpl(observers);
 	}
 	
 	public UsuarioControllerImpl getUsuarioControllerImpl() throws RemoteException {
@@ -50,9 +64,24 @@ public class ServerImpl implements Server, Observable {
 		return ultimaId;
 	}
 
-	public void TestConnection() throws RemoteException {
+	public void testConnection() throws RemoteException {
 		System.out.println("Hemos conectado con el server yeahh boooyyyyy");
 		
+	}
+
+	@Override
+	public VirtualController getVirtualControllerImpl() throws RemoteException {
+		return this.virtualControllerImpl;
+	}
+
+	@Override
+	public GameController getGameControllerImpl() throws RemoteException {
+		return this.gameControllerImpl;
+	}
+
+	@Override
+	public RegistroController getRegistroControllerImpl() throws RemoteException {
+		return this.registroControllerImpl;
 	}
 
 

@@ -13,14 +13,14 @@ public class DicePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public DicePanel(int num,String color) {
+	public DicePanel(int num) {
 		setLayout(null);
 		this.setSize(40, 40);
 		JLabel img = new JLabel();
 		img.setLocation(0, 0);
 		img.setSize(40,40);
 		add(img);
-		URL url = this.getClass().getClassLoader().getResource(color+"die"+num+".png");
+		URL url = this.getClass().getClassLoader().getResource("die"+num+".png");
 		ImageIcon image = new ImageIcon(url);
 		img.setIcon(image);
 		img.setVisible(true);

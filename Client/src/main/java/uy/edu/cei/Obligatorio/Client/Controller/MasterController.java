@@ -6,4 +6,5 @@ import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
 public interface MasterController {
 	public GeneralaPanel darPanel();
 	public void respuesta(GameNotification gn);
+	public void intro();
 }

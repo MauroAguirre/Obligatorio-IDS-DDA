@@ -13,14 +13,20 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import javax.swing.JRadioButton;
 
 public class RegistryPanel extends GeneralaPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtUsuario;
 	private JTextField txtContra;
-	private JTextField textRespuesta;
-
+	private JLabel lblRespuesta;
+	private JRadioButton rb1;
+	private JRadioButton rb2;
+	private JRadioButton rb3;
+	private JRadioButton rb4;
+	private JRadioButton rb5;
+	
 	public RegistryPanel() {
 		setBackground(Color.PINK);
 		SpringLayout springLayout = new SpringLayout();
@@ -68,13 +74,15 @@ public class RegistryPanel extends GeneralaPanel {
 		btnAgregar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					
 					EventQueueClient css = EventQueueClient.Instancia();
-					UsuarioModel usu = css.GetServer().getUsuarioControllerImpl().agregarUsuario(txtUsuario.getText(), txtContra.getText());
+					/*
+					UsuarioModel usu = css.getServer().getUsuarioControllerImpl().agregarUsuario(txtUsuario.getText(), txtContra.getText(),2);
 					if(usu == null)
 						textRespuesta.setText("Error al agregar usuario");
 					else
 						textRespuesta.setText("Usuario agregado");
-					
+					*/
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -85,18 +93,37 @@ public class RegistryPanel extends GeneralaPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnAgregar, 10, SpringLayout.WEST, this);
 		add(btnAgregar);
 		
-		JLabel lblRespuesta = new JLabel("Respuesta");
-		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 47, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, -91, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 0, SpringLayout.EAST, lblUsuario);
+		lblRespuesta = new JLabel("Respuesta");
+		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 41, SpringLayout.SOUTH, lblContrasea);
+		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 109, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, -82, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 62, SpringLayout.EAST, lblUsuario);
 		add(lblRespuesta);
 		
-		textRespuesta = new JTextField();
-		textRespuesta.setEditable(false);
-		springLayout.putConstraint(SpringLayout.NORTH, textRespuesta, 26, SpringLayout.SOUTH, txtContra);
-		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 3, SpringLayout.NORTH, textRespuesta);
-		springLayout.putConstraint(SpringLayout.EAST, textRespuesta, 0, SpringLayout.EAST, txtUsuario);
-		add(textRespuesta);
-		textRespuesta.setColumns(10);
+		rb1 = new JRadioButton("1");
+		springLayout.putConstraint(SpringLayout.SOUTH, rb1, -57, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, rb1, -119, SpringLayout.EAST, this);
+		add(rb1);
+		
+		rb2 = new JRadioButton("2");
+		springLayout.putConstraint(SpringLayout.WEST, rb2, 0, SpringLayout.WEST, rb1);
+		springLayout.putConstraint(SpringLayout.SOUTH, rb2, -18, SpringLayout.NORTH, rb1);
+		add(rb2);
+		
+		rb5 = new JRadioButton("5");
+		springLayout.putConstraint(SpringLayout.WEST, rb5, 0, SpringLayout.WEST, rb1);
+		rb5.setToolTipText("");
+		add(rb5);
+		
+		rb4 = new JRadioButton("4");
+		springLayout.putConstraint(SpringLayout.SOUTH, rb5, -20, SpringLayout.NORTH, rb4);
+		springLayout.putConstraint(SpringLayout.SOUTH, rb4, 0, SpringLayout.SOUTH, lblUsuario);
+		springLayout.putConstraint(SpringLayout.EAST, rb4, 0, SpringLayout.EAST, rb1);
+		add(rb4);
+		
+		rb3 = new JRadioButton("3");
+		springLayout.putConstraint(SpringLayout.SOUTH, rb3, 0, SpringLayout.SOUTH, lblContrasea);
+		springLayout.putConstraint(SpringLayout.EAST, rb3, 0, SpringLayout.EAST, rb1);
+		add(rb3);
 	}
 }

@@ -30,21 +30,21 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 	private UsuarioServiceMemoryImpl(){
 		this.users = new TreeMap<>();
 
-		users.put("mauro", new UsuarioModel("mauro", "123"));
-		users.put("matias", new UsuarioModel("matias", "123"));
-		users.put("kakaroto", new UsuarioModel("kakaroto", "123"));
+		users.put("mauro", new UsuarioModel("mauro", "123",2));
+		users.put("matias", new UsuarioModel("matias", "123",1));
+		users.put("kakaroto", new UsuarioModel("kakaroto", "123",2));
 	}
 
 
 
 	@Override
-	public UsuarioModel registrar(String mauro, String contra) throws RemoteException {
+	public UsuarioModel registrar(String mauro, String contra,int avatar) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
+	public List<UsuarioModel> listaUsuarios() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -60,6 +60,14 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 
 	@Override
 	public UsuarioModel buscarPorId(long id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public UsuarioModel modificar(String nombre, String contra, int avatar) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

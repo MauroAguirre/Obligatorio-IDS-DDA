@@ -24,4 +24,13 @@ public class GameController implements MasterController{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void intro() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void jugar(int i) {
+		
+	}
 }

@@ -30,12 +30,12 @@ public class LoginController implements MasterController {
 		return panel;
 	}
 	
-	public void IntentarLogear() {
+	public void intentarLogear() {
 		try {
 			String nombre = panel.getTextUsuario().getText();
 			String contra= new String(panel.getPasswordContra().getPassword());
 			EventQueueClient css = EventQueueClient.Instancia();
-			UsuarioController uci = css.GetServer().getUsuarioControllerImpl();
+			UsuarioController uci = css.getServer().getUsuarioControllerImpl();
 			uci.verificarUsuario(nombre, contra,css.getId());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

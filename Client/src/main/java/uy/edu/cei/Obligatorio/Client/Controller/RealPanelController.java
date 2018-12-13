@@ -25,7 +25,7 @@ public class RealPanelController implements MasterController {
 			
 			try {
 				EventQueueClient eqc = EventQueueClient.Instancia();
-				List<RealModel> salas = eqc.GetServer().getRealControllerImpl().darSalas();
+				List<RealModel> salas = eqc.getServer().getRealControllerImpl().darSalas();
 				DefaultListModel modelo = new DefaultListModel();
 				for(int i=0;i<salas.size();i++) {
 					modelo.addElement(salas.get(i).getNombre());
@@ -46,8 +46,8 @@ public class RealPanelController implements MasterController {
 		try {
 			String nombreSala = panel.getLista().getSelectedValue();
 			EventQueueClient eqc = EventQueueClient.Instancia();
-			UsuarioModel usuario = eqc.GetServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
-			RealController rci = eqc.GetServer().getRealControllerImpl();
+			UsuarioModel usuario = eqc.getServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
+			RealController rci = eqc.getServer().getRealControllerImpl();
 			rci.entrarSala(nombreSala, usuario);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +58,7 @@ public class RealPanelController implements MasterController {
 	public void mostrarSalas() {
 		try {
 			EventQueueClient eqc = EventQueueClient.Instancia();
-			List<RealModel> salas = eqc.GetServer().getRealControllerImpl().darSalas();
+			List<RealModel> salas = eqc.getServer().getRealControllerImpl().darSalas();
 			DefaultListModel modelo = new DefaultListModel();
 			for(int i=0;i<salas.size();i++) {
 				modelo.addElement(salas.get(i).getNombre());
@@ -72,23 +72,10 @@ public class RealPanelController implements MasterController {
 	public void crearSala() {
 		try {
 			EventQueueClient eqc = EventQueueClient.Instancia();
-			UsuarioModel usuario = eqc.GetServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
+			UsuarioModel usuario = eqc.getServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
 			//falta arregla que pasa si el panel no se ingresa un numero
-			RealController rci = eqc.GetServer().getRealControllerImpl();
+			RealController rci = eqc.getServer().getRealControllerImpl();
 			rci.crearSala(panel.getTxtNombre().getText(), usuario, Integer.parseInt(panel.getTxtApuesta().getText()));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void buscarSalaPorApuesta(int apuesta) {
-		try {
-			EventQueueClient eqc = EventQueueClient.Instancia();
-			UsuarioModel usuario = eqc.GetServer().getUsuarioControllerImpl().buscarUsuarioPorId(eqc.getId());
-			//falta arregla que pasa si el panel no se ingresa un numero
-			RealController rci = eqc.GetServer().getRealControllerImpl();
-			rci.entrarSalaPorApuesta(usuario, apuesta);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,5 +102,11 @@ public class RealPanelController implements MasterController {
 			default:
 		}
 		System.out.println(gn.getType());
+	}
+
+	@Override
+	public void intro() {
+		// TODO Auto-generated method stub
+		
 	}
 }

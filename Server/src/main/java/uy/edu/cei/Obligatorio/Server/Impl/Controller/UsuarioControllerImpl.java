@@ -1,4 +1,4 @@
-package uy.edu.cei.Obligatorio.Server.Impl.Model;
+package uy.edu.cei.Obligatorio.Server.Impl.Controller;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -17,7 +17,6 @@ import uy.edu.cei.Obligatorio.Server.Service.UsuarioService;
 public class UsuarioControllerImpl extends UnicastRemoteObject implements UsuarioController {
 
 	private static final long serialVersionUID = 1L;
-	private UsuarioServiceMemoryImpl usuarioServiceMemoryImpl;
 	private List<Observer> observers;
 	private UsuarioService us;
 
@@ -26,7 +25,7 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 		this.us = UsuarioService.userServiceFactory();
 	}
 	
-	public void verificarUsuario(String usuario, String contra, long id) throws RemoteException {
+	public void verificarUsuario(String usuario, String contra, Long id) throws RemoteException {
 		System.out.println("Usuario: "+usuario+" Contraseña: "+contra+" Id: "+id);
 		UsuarioModel usuarioModel = us.buscarUsuarioPorNombre(usuario);
 		GameNotification gameNotification;
@@ -43,18 +42,24 @@ public class UsuarioControllerImpl extends UnicastRemoteObject implements Usuari
 		}
 	}
 
-	public UsuarioModel agregarUsuario(String nombre, String contra) throws RemoteException {
-		return us.registrar(nombre, contra);
+	public UsuarioModel agregarUsuario(String nombre, String contra,int avatar) throws RemoteException {
+		return us.registrar(nombre, contra,avatar);
 	}
 
 	@Override
-	public List<UsuarioModel> ListaUsuarios() throws RemoteException {
-		return us.ListaUsuarios();
+	public List<UsuarioModel> listaUsuarios() throws RemoteException {
+		return us.listaUsuarios();
 	}
 	
 	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) throws RemoteException {
 		return us.buscarPorId(id);
+	}
+
+	@Override
+	public UsuarioModel modificarUsuario(String usuario, String contra, int avatar) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -38,6 +38,12 @@ public class RealPanel extends GeneralaPanel {
 	private JLabel lblApuesta;
 	private JLabel lblRespuesta;
 	private JList<String> lista;
+	//
+	private JButton btnUnirse;
+	private JButton btnSalir;
+	private JButton btnCrear;
+	private JLabel lblNombre;
+	private JLabel lblSalasReales;
 	
 	public JTextField getTxtNombre() {
 		return this.txtNombre;
@@ -76,7 +82,7 @@ public class RealPanel extends GeneralaPanel {
         
 
 		
-		JLabel lblSalasReales = new JLabel("Salas Reales");
+		lblSalasReales = new JLabel("Salas Reales");
 		lblSalasReales.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblSalasReales.setBounds(229, 60, 130, 23);
 		add(lblSalasReales);
@@ -86,29 +92,17 @@ public class RealPanel extends GeneralaPanel {
 		lblApuesta.setBounds(50, 242, 84, 23);
 		add(lblApuesta);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblNombre.setBounds(50, 180, 84, 23);
 		add(lblNombre);
 		
-		JButton btnMostrarSalas = new JButton("Mostrar Salas");
-		btnMostrarSalas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				RealPanelController rl = RealPanelController.getInstancia();
-				rl.mostrarSalas();
-			}
-		});
-		btnMostrarSalas.setFont(new Font("Forte", Font.PLAIN, 20));
-		btnMostrarSalas.setBounds(430, 63, 173, 23);
-		add(btnMostrarSalas);
+		btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnSalir.setBounds(478, 417, 75, 23);
+		add(btnSalir);
 		
-		JButton btnNewButton = new JButton("Salir");
-		btnNewButton.setFont(new Font("Forte", Font.PLAIN, 20));
-		btnNewButton.setBounds(478, 417, 75, 23);
-		add(btnNewButton);
-		
-		JButton btnCrear = new JButton("Crear");
+		btnCrear = new JButton("Crear");
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -120,11 +114,11 @@ public class RealPanel extends GeneralaPanel {
 		btnCrear.setBounds(50, 417, 91, 23);
 		add(btnCrear);
 		
-		JButton btnUnirse = new JButton("Unirse");
+		btnUnirse = new JButton("Unirse");
 		btnUnirse.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				RealPanelController rl = RealPanelController.getInstancia();
-				rl.buscarSalaPorApuesta(300);
+				///////////////////////
 			}
 		});
 		btnUnirse.setFont(new Font("Forte", Font.PLAIN, 20));

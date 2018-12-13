@@ -99,7 +99,7 @@ public class LoginPanel extends GeneralaPanel{
 			public void mousePressed(MouseEvent e) {
 				if(modificable) {
 					LoginController lc = new LoginController();
-					lc.IntentarLogear();
+					lc.intentarLogear();
 				}				
 			}
 		});
