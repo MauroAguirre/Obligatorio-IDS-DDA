@@ -85,6 +85,10 @@ public class LoginController implements MasterController {
 							EventQueueClient css = EventQueueClient.Instancia();
 							css.setId(gn.getDato());
 							mainWindow.cambiarVentana("main");
+							
+							
+							System.out.println(css.getId());
+						
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

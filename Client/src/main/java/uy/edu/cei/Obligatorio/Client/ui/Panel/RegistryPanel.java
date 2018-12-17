@@ -4,126 +4,190 @@ import java.awt.Color;
 import javax.swing.SpringLayout;
 
 import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
+import uy.edu.cei.Obligatorio.Client.Controller.RegistryController;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
+import uy.edu.cei.Obligatorio.Client.ui.Panel.Game.AvatarPanel;
 import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.rmi.RemoteException;
 import javax.swing.JRadioButton;
+import java.awt.Font;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.JPanel;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class RegistryPanel extends GeneralaPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField txtUsuario;
+	private boolean modificable;
+	private JTextField txtNombre;
 	private JTextField txtContra;
+	private AvatarPanel avatar;
+	private JList listado;
 	private JLabel lblRespuesta;
-	private JRadioButton rb1;
-	private JRadioButton rb2;
-	private JRadioButton rb3;
-	private JRadioButton rb4;
-	private JRadioButton rb5;
+	private JList listadoAvatares;
+	
+	public JList getListado() {
+		return this.listado;
+	}
+	public JTextField getTxtNombre() {
+		return this.txtNombre;
+	}
+	public JTextField getTxtContra() {
+		return this.txtContra;
+	}
+	public int seleccionadoListado() {
+		return listado.getSelectedIndex()+1;
+	}
+	public int seleccionadoAvatares() {
+		return listadoAvatares.getSelectedIndex()+1;
+	}
+	public JLabel getLblRespuesta() {
+		return this.lblRespuesta;
+	}
 	
 	public RegistryPanel() {
-		setBackground(Color.PINK);
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+		this.modificable=false;
+		setLayout(null);
+		this.setSize(640, 480);
+		URL url = this.getClass().getClassLoader().getResource("fondo2.jpg");
+		ImageIcon image = new ImageIcon(url);
+		setLayout(null);
 		
 		JLabel lblRegistro = new JLabel("Registro");
-		springLayout.putConstraint(SpringLayout.NORTH, lblRegistro, 28, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblRegistro, 173, SpringLayout.WEST, this);
+		lblRegistro.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblRegistro.setBounds(253, 30, 83, 26);
 		add(lblRegistro);
 		
-		JLabel lblUsuario = new JLabel("Usuario");
-		add(lblUsuario);
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblNombre.setBounds(34, 118, 68, 26);
+		add(lblNombre);
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
-		springLayout.putConstraint(SpringLayout.NORTH, lblContrasea, 35, SpringLayout.SOUTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.WEST, lblContrasea, 48, SpringLayout.WEST, this);
-		add(lblContrasea);
+		JLabel lblContra = new JLabel("Contra");
+		lblContra.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblContra.setBounds(34, 177, 68, 26);
+		add(lblContra);
 		
-		txtUsuario = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtUsuario, 55, SpringLayout.SOUTH, lblRegistro);
-		springLayout.putConstraint(SpringLayout.WEST, txtUsuario, 168, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 3, SpringLayout.NORTH, txtUsuario);
-		springLayout.putConstraint(SpringLayout.EAST, lblUsuario, -65, SpringLayout.WEST, txtUsuario);
-		add(txtUsuario);
-		txtUsuario.setColumns(10);
-		
-		txtContra = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, txtContra, -3, SpringLayout.NORTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.WEST, txtContra, 0, SpringLayout.WEST, txtUsuario);
-		add(txtContra);
-		txtContra.setColumns(10);
-		
-		JButton btnSalir = new JButton("Salir");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSalir, -10, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnSalir, -10, SpringLayout.EAST, this);
-		btnSalir.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				MainWindow mainWindow = MainWindow.getInstancia();
-				mainWindow.cambiarVentana("main");
-			}
-		});
-		add(btnSalir);
-		
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					
-					EventQueueClient css = EventQueueClient.Instancia();
-					/*
-					UsuarioModel usu = css.getServer().getUsuarioControllerImpl().agregarUsuario(txtUsuario.getText(), txtContra.getText(),2);
-					if(usu == null)
-						textRespuesta.setText("Error al agregar usuario");
-					else
-						textRespuesta.setText("Usuario agregado");
-					*/
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnAgregar, 0, SpringLayout.NORTH, btnSalir);
-		springLayout.putConstraint(SpringLayout.WEST, btnAgregar, 10, SpringLayout.WEST, this);
-		add(btnAgregar);
-		
-		lblRespuesta = new JLabel("Respuesta");
-		springLayout.putConstraint(SpringLayout.NORTH, lblRespuesta, 41, SpringLayout.SOUTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.WEST, lblRespuesta, 109, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblRespuesta, -82, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblRespuesta, 62, SpringLayout.EAST, lblUsuario);
+		lblRespuesta = new JLabel("");
+		lblRespuesta.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblRespuesta.setBounds(295, 417, 210, 26);
 		add(lblRespuesta);
 		
-		rb1 = new JRadioButton("1");
-		springLayout.putConstraint(SpringLayout.SOUTH, rb1, -57, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, rb1, -119, SpringLayout.EAST, this);
-		add(rb1);
+		JLabel lblTituloTabla = new JLabel("Id - Nombre - Contra - Avatar");
+		lblTituloTabla.setFont(new Font("Forte", Font.PLAIN, 20));
+		lblTituloTabla.setBounds(369, 118, 261, 26);
+		add(lblTituloTabla);
 		
-		rb2 = new JRadioButton("2");
-		springLayout.putConstraint(SpringLayout.WEST, rb2, 0, SpringLayout.WEST, rb1);
-		springLayout.putConstraint(SpringLayout.SOUTH, rb2, -18, SpringLayout.NORTH, rb1);
-		add(rb2);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(142, 118, 141, 26);
+		add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		rb5 = new JRadioButton("5");
-		springLayout.putConstraint(SpringLayout.WEST, rb5, 0, SpringLayout.WEST, rb1);
-		rb5.setToolTipText("");
-		add(rb5);
+		txtContra = new JTextField();
+		txtContra.setColumns(10);
+		txtContra.setBounds(142, 177, 141, 26);
+		add(txtContra);
 		
-		rb4 = new JRadioButton("4");
-		springLayout.putConstraint(SpringLayout.SOUTH, rb5, -20, SpringLayout.NORTH, rb4);
-		springLayout.putConstraint(SpringLayout.SOUTH, rb4, 0, SpringLayout.SOUTH, lblUsuario);
-		springLayout.putConstraint(SpringLayout.EAST, rb4, 0, SpringLayout.EAST, rb1);
-		add(rb4);
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				RegistryController rc = RegistryController.getInstancia();
+				rc.agregarUsuario();
+			}
+		});
+		btnRegistrar.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnRegistrar.setBounds(10, 417, 115, 23);
+		add(btnRegistrar);
 		
-		rb3 = new JRadioButton("3");
-		springLayout.putConstraint(SpringLayout.SOUTH, rb3, 0, SpringLayout.SOUTH, lblContrasea);
-		springLayout.putConstraint(SpringLayout.EAST, rb3, 0, SpringLayout.EAST, rb1);
-		add(rb3);
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainWindow main = MainWindow.getInstancia();
+				main.cambiarVentana("main");
+			}
+		});
+		btnSalir.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnSalir.setBounds(515, 417, 115, 23);
+		add(btnSalir);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				RegistryController rc = RegistryController.getInstancia();
+				rc.modificarUsuario();
+			}
+		});
+		btnModificar.setFont(new Font("Forte", Font.PLAIN, 20));
+		btnModificar.setBounds(142, 417, 132, 23);
+		add(btnModificar);
+		
+		JPanel panelAvataresListado = new JPanel();
+		panelAvataresListado.setBounds(77, 230, 24, 152);
+		add(panelAvataresListado);
+		panelAvataresListado.setLayout(null);
+		
+		listadoAvatares = new JList();
+		listadoAvatares.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				int seleccionado = listadoAvatares.getSelectedIndex();
+				avatar.cambiar(seleccionado+1);
+				repaint();
+			}
+		});
+		listadoAvatares.setFont(new Font("Forte", Font.PLAIN, 20));
+		listadoAvatares.setBounds(0, 0, 24, 152);
+		panelAvataresListado.add(listadoAvatares);
+		listadoAvatares.setModel(new AbstractListModel() {
+			String[] values = new String[] {"1", "2", "3", "4", "5"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		
+
+		avatar = new AvatarPanel(1);
+		avatar.setBounds(142, 232, 150, 150);
+		add(avatar);
+		
+		JPanel panelListado = new JPanel();
+		panelListado.setBounds(369, 154, 261, 228);
+		add(panelListado);
+		panelListado.setLayout(null);
+		
+		listado = new JList();
+		listado.setBounds(10, 11, 241, 206);
+		listado.setModel(new AbstractListModel() {
+			String[] values = new String[] {"53543", "534534", "345345"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		panelListado.add(listado);
+		
+		JLabel img = new JLabel();
+		img.setLocation(0, 0);
+		img.setSize(640,480);
+		add(img);
+		img.setIcon(image);
+		img.setVisible(true);
 	}
 }

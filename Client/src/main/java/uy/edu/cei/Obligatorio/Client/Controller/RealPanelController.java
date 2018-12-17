@@ -98,6 +98,12 @@ public class RealPanelController implements MasterController {
 				break;
 			case REAL_MATCHSTART:
 				main.cambiarVentana("game");
+				GameController gc = GameController.getInstancia();
+				gc.setSala(gn.getSala());
+				if(gn.getDato()==1)
+					gc.primero();
+				else
+					gc.segundo();
 				break;
 			default:
 		}

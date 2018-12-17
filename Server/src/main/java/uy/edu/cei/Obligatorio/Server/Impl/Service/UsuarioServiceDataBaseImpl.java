@@ -52,11 +52,13 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 	}
 
 	public List<UsuarioModel> listaUsuarios() throws RemoteException {
+		List<UsuarioModel> results;
 		EntityManager em = JPAService.getInstance().getEM();
 		em.getTransaction().begin();
-		//em.ge
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.todos",UsuarioModel.class);
+		results = query.getResultList();
 		em.getTransaction().commit();
-		return null;
+		return results;
 	}
 
 	@Override
@@ -72,9 +74,69 @@ public class UsuarioServiceDataBaseImpl implements UsuarioService {
 	}
 
 	@Override
-	public UsuarioModel modificar(String nombre, String contra, int avatar) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public UsuarioModel modificar(Long idUsuario,String nombre, String contra, int avatar) throws RemoteException {
+		EntityManager em = JPAService.getInstance().getEM();
+		UsuarioModel usu = null;
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.UserFindByUserName",UsuarioModel.class);
+		query.setParameter("usuario",nombre);
+		List<UsuarioModel> results = query.getResultList();
+		if(results.isEmpty())
+		{
+			query = em.createNamedQuery("UsuarioModel.buscarPorId",UsuarioModel.class);
+			query.setParameter("id",idUsuario);
+			usu = query.getSingleResult();
+			usu.SetUsuario(nombre);
+			usu.SetContra(contra);
+			usu.setAvatar(avatar);
+			em.persist(usu);
+		}
+		em.getTransaction().commit();
+		return usu;
+	}
+
+	@Override
+	public List<UsuarioModel> listaVictorias() throws RemoteException {
+		List<UsuarioModel> results;
+		EntityManager em = JPAService.getInstance().getEM();
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.victorias",UsuarioModel.class);
+		results = query.getResultList();
+		em.getTransaction().commit();
+		return results;
+	}
+
+	@Override
+	public List<UsuarioModel> listaPuntos() throws RemoteException {
+		List<UsuarioModel> results;
+		EntityManager em = JPAService.getInstance().getEM();
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.puntos",UsuarioModel.class);
+		results = query.getResultList();
+		em.getTransaction().commit();
+		return results;
+	}
+
+	@Override
+	public List<UsuarioModel> listaReales() throws RemoteException {
+		List<UsuarioModel> results;
+		EntityManager em = JPAService.getInstance().getEM();
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.reales",UsuarioModel.class);
+		results = query.getResultList();
+		em.getTransaction().commit();
+		return results;
+	}
+
+	@Override
+	public List<UsuarioModel> listaVirtuales() throws RemoteException {
+		List<UsuarioModel> results;
+		EntityManager em = JPAService.getInstance().getEM();
+		em.getTransaction().begin();
+		TypedQuery<UsuarioModel> query = em.createNamedQuery("UsuarioModel.virtuales",UsuarioModel.class);
+		results = query.getResultList();
+		em.getTransaction().commit();
+		return results;
 	}
 
 }

@@ -74,11 +74,25 @@ public class MainPanel extends GeneralaPanel {
 		add(lblSalir);
 		
 		lblRankings = new JLabel("Rankings");
+		lblRankings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainWindow main = MainWindow.getInstancia();
+				main.cambiarVentana("ranking");
+			}
+		});
 		lblRankings.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblRankings.setBounds(255, 303, 86, 20);
 		add(lblRankings);
 		
 		lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainWindow main = MainWindow.getInstancia();
+				main.cambiarVentana("registry");
+			}
+		});
 		lblUsuarios.setFont(new Font("Forte", Font.PLAIN, 20));
 		lblUsuarios.setBounds(255, 123, 86, 20);
 		add(lblUsuarios);

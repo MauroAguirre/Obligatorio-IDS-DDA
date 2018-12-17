@@ -10,8 +10,10 @@ import java.util.Queue;
 
 import javax.swing.JFrame;
 
+import uy.edu.cei.Obligatorio.Client.Controller.GameController;
 import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
 import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
+import uy.edu.cei.Obligatorio.Client.Controller.RegistryController;
 import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.RegistryPanel;
@@ -96,7 +98,18 @@ public class EventQueueClient extends UnicastRemoteObject implements Observer{
 				RealPanelController realController = RealPanelController.getInstancia();
 				realController.respuesta(notification);
 				break;
-			case REGISTRY:
+			case USER_CREATED:
+			case USER_CREATEDERROR:
+			case USER_MODIFY:
+				RegistryController rc = RegistryController.getInstancia();
+				rc.respuesta(notification);
+				break;
+			case DICE_PUSH:
+			case DICE_PULL:
+			case DICE_SELECTED:
+			case YOUR_TURN:
+				GameController gc = GameController.getInstancia();
+				gc.respuesta(notification);
 				break;
 			default:
 				break;

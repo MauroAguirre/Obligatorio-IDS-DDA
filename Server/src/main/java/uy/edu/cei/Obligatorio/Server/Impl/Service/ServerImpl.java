@@ -46,7 +46,7 @@ public class ServerImpl implements Server, Observable {
 		usuarioControllerImpl = new UsuarioControllerImpl(observers);
 		realControllerImpl = new RealControllerImpl(observers,salasReales);
 		virtualControllerImpl = new VirtualControllerImpl(observers,salasVirtuales);
-		gameControllerImpl = new GameControllerImpl(observers);
+		gameControllerImpl = new GameControllerImpl(observers,salasReales,salasVirtuales);
 	}
 	
 	public UsuarioControllerImpl getUsuarioControllerImpl() throws RemoteException {
@@ -70,17 +70,17 @@ public class ServerImpl implements Server, Observable {
 	}
 
 	@Override
-	public VirtualController getVirtualControllerImpl() throws RemoteException {
+	public VirtualControllerImpl getVirtualControllerImpl() throws RemoteException {
 		return this.virtualControllerImpl;
 	}
 
 	@Override
-	public GameController getGameControllerImpl() throws RemoteException {
+	public GameControllerImpl getGameControllerImpl() throws RemoteException {
 		return this.gameControllerImpl;
 	}
 
 	@Override
-	public RegistroController getRegistroControllerImpl() throws RemoteException {
+	public RegistroControllerImpl getRegistroControllerImpl() throws RemoteException {
 		return this.registroControllerImpl;
 	}
 

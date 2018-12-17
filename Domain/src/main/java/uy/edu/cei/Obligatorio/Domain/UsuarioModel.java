@@ -21,7 +21,12 @@ import javax.persistence.Table;
 @Table(name = "usuarios")
 @NamedQueries({
 	@NamedQuery(name = "UsuarioModel.UserFindByUserName", query = "SELECT u FROM UsuarioModel u WHERE u.usuario = :usuario"),
-	@NamedQuery(name = "UsuarioModel.buscarPorId", query = "SELECT u FROM UsuarioModel u WHERE u.id = :id")
+	@NamedQuery(name = "UsuarioModel.buscarPorId", query = "SELECT u FROM UsuarioModel u WHERE u.id = :id"),
+	@NamedQuery(name = "UsuarioModel.todos", query = "SELECT u FROM UsuarioModel u"),
+	@NamedQuery(name = "UsuarioModel.victorias", query = "SELECT u FROM UsuarioModel u ORDER BY victorias DESC "),
+	@NamedQuery(name = "UsuarioModel.puntos", query = "SELECT u FROM UsuarioModel u ORDER BY puntos DESC"),
+	@NamedQuery(name = "UsuarioModel.reales", query = "SELECT u FROM UsuarioModel u ORDER BY reales DESC"),
+	@NamedQuery(name = "UsuarioModel.virtuales", query = "SELECT u FROM UsuarioModel u ORDER BY virtuales DESC")
 })
 public class UsuarioModel implements Remote, Serializable {
 	
@@ -61,7 +66,16 @@ public class UsuarioModel implements Remote, Serializable {
 		this.reales=1000;
 		this.virtuales=1000;
 	}
-	
+	public UsuarioModel(String usuario, String contra,int avatar,int victorias,int puntos,int reales,int virtuales) {
+		this.usuario = usuario;
+		this.contra = contra;
+		this.avatar = avatar;
+		this.victorias=virtuales;
+		this.derrotas=0;
+		this.puntos=puntos;
+		this.reales=reales;
+		this.virtuales=victorias;
+	}
 	public Long getId() {
 		return this.id;
 	}
@@ -80,5 +94,42 @@ public class UsuarioModel implements Remote, Serializable {
 
 	public String GetContra() {
 		return this.contra;
+	}
+	
+	public int getVirtuales() {
+		return this.virtuales;
+	}
+	public void setVirtuales(int virtuales) {
+		this.virtuales = virtuales;
+	}
+	public int getReales() {
+		return this.reales;
+	}
+	public void setReales(int reales) {
+		this.reales = reales;
+	}
+	public int getVictorias() {
+		return this.victorias;
+	}
+	public void setVictorias(int victorias) {
+		this.victorias = victorias;
+	}
+	public int getDerrotas() {
+		return this.derrotas;
+	}
+	public void setDerrotas(int derrotas) {
+		this.derrotas = derrotas;
+	}
+	public int getPuntos() {
+		return this.puntos;
+	}
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+	public int getAvatar() {
+		return this.avatar;
+	}
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
 	}
 }

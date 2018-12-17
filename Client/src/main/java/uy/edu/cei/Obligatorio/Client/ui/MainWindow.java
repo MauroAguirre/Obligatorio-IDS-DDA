@@ -18,7 +18,9 @@ import javax.swing.JFrame;
 import uy.edu.cei.Obligatorio.Client.Controller.GameController;
 import uy.edu.cei.Obligatorio.Client.Controller.LoginController;
 import uy.edu.cei.Obligatorio.Client.Controller.MainController;
+import uy.edu.cei.Obligatorio.Client.Controller.RankingController;
 import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
+import uy.edu.cei.Obligatorio.Client.Controller.RegistryController;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.GeneralaPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.LoginPanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.MainPanel;
@@ -61,8 +63,9 @@ public class MainWindow{
 				break;
 			case "registry":
 				//falta el controller
-				RegistryPanel panel3 = new RegistryPanel();
-				frame.setContentPane(panel3);
+				RegistryController rc = RegistryController.getInstancia();
+				rc.listarUsuarios();
+				frame.setContentPane(rc.darPanel());			
 				frame.setVisible(true);
 				break;
 			case "kill":
@@ -74,6 +77,7 @@ public class MainWindow{
 				break;
 			case "real":
 				RealPanelController realController = RealPanelController.getInstancia();
+				realController.mostrarSalas();
 				frame.setContentPane(realController.darPanel());
 				frame.setVisible(true);
 				break;
@@ -82,6 +86,11 @@ public class MainWindow{
 				frame.setContentPane(gameController.darPanel());
 				frame.setVisible(true);
 				break;
+			case "ranking":
+				RankingController ranc = RankingController.getInstancia();
+				frame.setContentPane(ranc.darPanel());
+				ranc.listado();
+				frame.setVisible(true);
 		}
 	}
 	

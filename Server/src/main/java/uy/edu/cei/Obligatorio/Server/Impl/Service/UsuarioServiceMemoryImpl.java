@@ -67,7 +67,39 @@ public class UsuarioServiceMemoryImpl implements UsuarioService {
 
 
 	@Override
-	public UsuarioModel modificar(String nombre, String contra, int avatar) throws RemoteException {
+	public UsuarioModel modificar(Long idUsuario,String nombre, String contra, int avatar) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<UsuarioModel> listaVictorias() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<UsuarioModel> listaPuntos() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<UsuarioModel> listaReales() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<UsuarioModel> listaVirtuales() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

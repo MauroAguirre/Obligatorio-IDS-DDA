@@ -1,30 +1,18 @@
 package uy.edu.cei.Obligatorio.Client.ui.Panel;
 
 import java.net.URL;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListModel;
-
 import uy.edu.cei.Obligatorio.Client.Controller.RealPanelController;
-import uy.edu.cei.Obligatorio.Domain.UsuarioModel;
+import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 
 import java.awt.Font;
 import javax.swing.JList;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.AbstractListModel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 public class RealPanel extends GeneralaPanel {
 
@@ -98,6 +86,13 @@ public class RealPanel extends GeneralaPanel {
 		add(lblNombre);
 		
 		btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainWindow main = MainWindow.getInstancia();
+				main.cambiarVentana("main");
+			}
+		});
 		btnSalir.setFont(new Font("Forte", Font.PLAIN, 20));
 		btnSalir.setBounds(478, 417, 75, 23);
 		add(btnSalir);
@@ -118,7 +113,7 @@ public class RealPanel extends GeneralaPanel {
 		btnUnirse.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				RealPanelController rl = RealPanelController.getInstancia();
-				///////////////////////
+				rl.entrarSala();
 			}
 		});
 		btnUnirse.setFont(new Font("Forte", Font.PLAIN, 20));
