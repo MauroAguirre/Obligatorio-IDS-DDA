@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JLabel;
 
 import uy.edu.cei.Obligatorio.Client.App.EventQueueClient;
+import uy.edu.cei.Obligatorio.Client.ui.MainWindow;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.Game.DicePanel;
 import uy.edu.cei.Obligatorio.Client.ui.Panel.Game.GamePanel;
 import uy.edu.cei.Obligatorio.Common.Notifications.GameNotification;
@@ -20,6 +21,9 @@ public class GameController implements MasterController{
 	private boolean conteo;
 	private int turno;
 	private int jugada;
+	private int juego;
+	private int puntaje1;
+	private int puntaje2;
 	
 	public static GameController getInstancia() {
 		if(instancia == null) {
@@ -48,6 +52,24 @@ public class GameController implements MasterController{
 				moverDados(false,gn);
 				break;
 			case YOUR_TURN:
+				if(juego==22) {
+					if(puntaje1>puntaje2) {
+						panel.getLblAccion().setText("Gano jugador 1");
+					}
+					else {
+						panel.getLblAccion().setText("Gano jugador 2");
+					}
+					try {
+						Thread.sleep(4000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					MainWindow main = MainWindow.getInstancia();
+					main.cambiarVentana("main");
+				}
+				juego++;
+				System.out.println(juego);
 				//alegar los dados
 				panel.getDice1().setBounds(-130, 0, 40, 40);
 				panel.getDice2().setBounds(-130, 0, 40, 40);
@@ -61,14 +83,14 @@ public class GameController implements MasterController{
 				panel.getDice5().setEstado(0);
 				//
 				jugada=0;
-				panel.getLblPuntaje2().setText(Integer.toString(Integer.parseInt(panel.getLblPuntaje2().getText()+gn.getDato())));
+				panel.getLblPuntaje2().setText(Integer.toString((puntaje2+(int)gn.getDato())));
 				panel.setModificable(true);
 				panel.getLblAccion().setText("Tira los dados");
 				conteo();
 				turno = 0;
 				break;
 			case DICE_SELECTED:
-				panel.getLblPuntaje1().setText(Integer.toString(Integer.parseInt(panel.getLblPuntaje1().getText()+gn.getDato())));
+				panel.getLblPuntaje1().setText(Integer.toString((puntaje1+(int)gn.getDato())));
 				panel.setModificable(false);
 				panel.getLblAccion().setText("Juega el otro jugador");
 				break;
@@ -327,6 +349,7 @@ public class GameController implements MasterController{
 		return false;
 	}
 	public void primero() {
+		juego=0;
 		jugada=0;
 		//alegar los dados
 		panel.getDice1().setBounds(-130, 0, 40, 40);
@@ -388,6 +411,7 @@ public class GameController implements MasterController{
 		}).start();
 	}
 	public void segundo() {
+		juego=0;
 		jugada=0;
 		//alegar los dados
 		panel.getDice1().setBounds(-130, 0, 40, 40);
@@ -428,7 +452,7 @@ public class GameController implements MasterController{
 		int[] dados = {panel.getDice1().getNumero(),panel.getDice2().getNumero(),panel.getDice3().getNumero(),panel.getDice4().getNumero(),panel.getDice5().getNumero()};
 		boolean[] disponibles = {panel.getDice1().getEstado(),panel.getDice2().getEstado(),panel.getDice3().getEstado(),panel.getDice4().getEstado(),panel.getDice5().getEstado()};
 		try {
-			if(turno!=2) {
+			if(turno!=3) {
 				EventQueueClient eqc = EventQueueClient.Instancia();
 				Long idOtro;
 				if(sala.getPlayer1().getId()==eqc.getId())
